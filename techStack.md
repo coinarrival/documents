@@ -22,17 +22,17 @@
         </a>
       </td>
       <td align="center" valign="middle">
-        <a href="https://github.com/webpack/webpack" target="_blank">
+        <a href="https://webpack.js.org/" target="_blank">
           <img width="222px" src="https://www.webpackjs.com//6bc5d8cf78d442a984e70195db059b69.svg">
         </a>
       </td>
       <td align="center" valign="middle">
-        <a href="https://github.com/mochajs/mocha" target="_blank">
+        <a href="https://mochajs.org/" target="_blank">
           <img width="222px" src="https://camo.githubusercontent.com/af4bf83ab2ca125346740f9961345a24ec43b3a9/68747470733a2f2f636c6475702e636f6d2f78465646784f696f41552e737667">
         </a>
       </td>
       <td align="center" valign="middle">
-        <a href="https://github.com/chaijs/chai" target="_blank">
+        <a href="https://www.chaijs.com/" target="_blank">
           <img width="222px" src="https://camo.githubusercontent.com/431283cc1643d02167aac31067137897507c60fc/687474703a2f2f636861696a732e636f6d2f696d672f636861692d6c6f676f2e706e67">
         </a>
       </td>
