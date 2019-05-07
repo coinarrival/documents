@@ -1,6 +1,6 @@
 # Summary
 
-* [About](doc/about.md)
+* [About](docs/about.md)
 * [Team Profile](docs/teamProfile.md)
 * [Investigation](docs/investigation.md)
 * [Vision](docs/vision.md)
