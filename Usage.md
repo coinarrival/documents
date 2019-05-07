@@ -8,6 +8,7 @@
 
 ## Dependence
 
+1. git >= 2.18.1
 1. node
 1. npm
 
@@ -34,3 +35,17 @@ npm install -g gh-pages
 gitbook build
 gh-pages -d _book
 ```
+
+### Q&A
+
+1. `gh-pages -d _book` 出现以下问题：
+
+    ```bash
+    fatal: HttpRequestException encountered.
+    bash: /dev/tty: No such device or address
+    error: failed to execute prompt script (exit code 1)
+    fatal: could not read Username for 'https://github.com': Invalid argument
+    ```
+
+    - [Solution-1 更改 git 配置](https://github.com/tschaub/gh-pages/issues/230#issuecomment-368868268)
+    - [Solution-2 更新 git 版本](https://git-scm.com/downloads)
