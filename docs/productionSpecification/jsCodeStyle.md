@@ -12,7 +12,7 @@
   
 ### 分号
 
-- 所有语句必须以分号结尾
+- 所有语句必须以**分号结尾**
 
 ### 行宽
 
@@ -31,6 +31,7 @@
   // Discourage
   currentEstimate = calc(currentEstimate + x *
     currentEstimate) / 2.0f;
+  ```
 
 - 左大括号不换行
   
