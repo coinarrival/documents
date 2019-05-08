@@ -1,6 +1,6 @@
 # Summary
 
-* [Introduction](README.md)
+* [币达](README.md)
 * [About](docs/about.md)
 * [Team Profile](docs/teamProfile.md)
 * [Investigation](docs/investigation.md)
