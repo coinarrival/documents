@@ -1,0 +1,91 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: CoinArrival-Backend
+  description: Backend API conrtains of CoinArrival.
+schemes: 
+- http
+host: localhost
+paths:
+  /account:
+    get:
+      description: Query user info with given fields
+      parameters: 
+        - in: query
+          name: username
+          required: true
+          type: string
+        - in: query
+          name: password
+          type: string
+      produces: 
+        - application/json
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              email:
+                type: string
+              phone:
+                type: string
+              avatar:
+                type: string
+        404:
+          description: User not found
+        
+    post:
+      description: Create an account with given info
+      consumes: 
+        - application/json
+      parameters: 
+        - in: body
+          name: account
+          description: Username and password of account
+          schema:
+            type: object
+            required: 
+              - username
+              - password
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+      responses:
+        201:
+          description: Successfully created
+        409:
+          description: Confict username
+
+    put:
+      description: Update account info
+      consumes: 
+        - application/json
+      parameters: 
+        - in: body
+          name: account
+          description: The account info to be updated
+          schema:
+            type: object
+            required: 
+              - username
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+              email:
+                type: string
+              phone:
+                type: string
+              avatar:
+                type: string
+      responses:
+        201:
+          description: Successfully updated
+        401:
+          description: Requested before login as the edited account
