@@ -7,7 +7,7 @@ schemes:
 - http
 host: localhost
 paths:
-  /account:
+  /account_info:
     get:
       description: Query user info with given fields
       parameters: 
@@ -36,32 +36,8 @@ paths:
                 type: string
         404:
           description: User not found
-        
-    post:
-      description: Create an account with given info
-      consumes: 
-        - application/json
-      parameters: 
-        - in: body
-          name: account
-          description: Username and password of account
-          schema:
-            type: object
-            required: 
-              - username
-              - password
-            properties:
-              username:
-                type: string
-              password:
-                type: string
-      responses:
-        201:
-          description: Successfully created
-        409:
-          description: Confict username
 
-    put:
+    post:
       description: Update account info
       consumes: 
         - application/json
@@ -89,3 +65,27 @@ paths:
           description: Successfully updated
         401:
           description: Requested before login as the edited account
+  /registration:
+    post:
+      description: Create an account with given info
+      consumes: 
+        - application/json
+      parameters: 
+        - in: body
+          name: account
+          description: Username and password of account
+          schema:
+            type: object
+            required: 
+              - username
+              - password
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+      responses:
+        201:
+          description: Successfully created
+        409:
+          description: Confict username

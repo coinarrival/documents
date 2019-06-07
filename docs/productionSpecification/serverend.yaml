@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: 0.0.1
   title: CoinArrival-Serverend
-  description: Serverend API conrtains of CoinArrival.
+  description: "Serverend API conrtains of CoinArrival."
 schemes: 
 - http
 host: localhost
@@ -17,7 +17,7 @@ paths:
           description: Resource successfully shipped
         404:
           description: Resource not found
-  /check_pass:
+  /login:
     post:
       description: Login check
       consumes: 
@@ -41,7 +41,7 @@ paths:
           description: Successfully login
         406:
           description: No such username or unmatched password
-  /account:
+  /account_info:
     get:
       description: Get personal infomation of an account   
       parameters: 
@@ -68,33 +68,7 @@ paths:
           description: User not found
         401:
           description: Requested before login
-        
     post:
-      description: Create an account with given info or login
-      consumes: 
-        - application/json
-      parameters: 
-        - in: body
-          name: account
-          description: Username and password of account
-          schema:
-            type: object
-            required: 
-              - username
-              - password
-            properties:
-              username:
-                type: string
-              password:
-                type: string
-      responses:
-        201:
-          description: Successfully created
-        400:
-          description: Invalid info format
-        409:
-          description: Confict username
-    put:
       description: Update account info
       consumes: 
         - application/json
@@ -122,3 +96,29 @@ paths:
           description: Successfully updated
         401:
           description: Requested before login as the edited account
+  /registration:  
+    post:
+      description: Create an account with given info or login
+      consumes: 
+        - application/json
+      parameters: 
+        - in: body
+          name: account
+          description: Username and password of account
+          schema:
+            type: object
+            required: 
+              - username
+              - password
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+      responses:
+        201:
+          description: Successfully created
+        400:
+          description: Invalid info format
+        409:
+          description: Confict username
