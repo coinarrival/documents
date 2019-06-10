@@ -64,10 +64,10 @@ paths:
                 type: string
               avatar:
                 type: string
+        400:
+          description: Necessary field not filled
         404:
           description: User not found
-        401:
-          description: Requested before login
     post:
       description: Update account info
       consumes: 
@@ -94,6 +94,8 @@ paths:
       responses:
         201:
           description: Successfully updated
+        400:
+          description: Necessary field not filled or invalid format
         401:
           description: Requested before login as the edited account
   /registration:  
@@ -119,6 +121,6 @@ paths:
         201:
           description: Successfully created
         400:
-          description: Invalid info format
+          description: Necessary field not filled or invalid format
         409:
           description: Confict username
