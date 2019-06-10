@@ -12,5 +12,6 @@
     * [JavaScript 代码规范](docs/productionSpecification/jsCodeStyle.md)
     * [Python 代码规范](docs/productionSpecification/pyCodeStyle.md)
 * Meeting Recording
-    * [Inception 19/5/6](docs/meettingRecording/inception.md)
+    * [Inception 19/5/6](docs/meettingRecording/inception_5_06.md)
+    * [Inception 19/5/27](docs/meettingRecording/inception_5_27.md)
 
