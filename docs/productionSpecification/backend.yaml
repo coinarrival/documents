@@ -7,16 +7,38 @@ schemes:
 - http
 host: localhost
 paths:
-  /account:
+  /verification:
+    post:
+      description: Verify the username and password
+      parameters: 
+        - in: body
+          name: account
+          description: Username and password of account
+          schema:
+            type: object
+            required: 
+              - username
+              - password
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+      responses:
+        200:
+          description: Successfully verified
+        400:
+          description: Necessary field not filled
+        406:
+          description: Username or password invalid
+          
+  /account_info:
     get:
       description: Query user info with given fields
       parameters: 
         - in: query
           name: username
           required: true
-          type: string
-        - in: query
-          name: password
           type: string
       produces: 
         - application/json
@@ -36,32 +58,8 @@ paths:
                 type: string
         404:
           description: User not found
-        
-    post:
-      description: Create an account with given info
-      consumes: 
-        - application/json
-      parameters: 
-        - in: body
-          name: account
-          description: Username and password of account
-          schema:
-            type: object
-            required: 
-              - username
-              - password
-            properties:
-              username:
-                type: string
-              password:
-                type: string
-      responses:
-        201:
-          description: Successfully created
-        409:
-          description: Confict username
 
-    put:
+    post:
       description: Update account info
       consumes: 
         - application/json
@@ -87,5 +85,29 @@ paths:
       responses:
         201:
           description: Successfully updated
-        401:
-          description: Requested before login as the edited account
+  /registration:
+    post:
+      description: Create an account with given info
+      consumes: 
+        - application/json
+      parameters: 
+        - in: body
+          name: account
+          description: Username and password of account
+          schema:
+            type: object
+            required: 
+              - username
+              - password
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+      responses:
+        201:
+          description: Successfully created
+        400:
+          description: Necessary field not filled or invalid format
+        409:
+          description: Confict username
