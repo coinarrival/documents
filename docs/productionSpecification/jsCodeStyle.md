@@ -3,12 +3,13 @@
 |版本|日期|描述|作者|
 |:--:|:--:|:--:|:--:|
 |v0.1|2019年5月8日|JavaScript 代码规范|BroInBro|
+|v0.2|2019年6月11日|适应性修改|Hairi|
 
 ## 代码风格
 
 ### 缩进
 
-- 统一使用**4空格**缩进
+- 统一使用**2空格**缩进
   
 ### 分号
 
@@ -156,14 +157,14 @@ x = x + 1;  // x加一
 
 - 变量使用名词，函数使用动词 + 名词，命名语义化
 - 常量使用下划线分隔的大写命名
-- 其余情况采用 CamelCase 命名风格
+- 其余情况采用下划线命名法
 
 ```javascript
 const MAX_SIZE = 10;
 
-function func(varOne, varTwo) {
-    let curSize = varOne + varTwo;
-    return curSize;
+function func(var_one, var_two) {
+    let cur_size = var_one + var_two;
+    return cur_size;
 }
 ```
 
