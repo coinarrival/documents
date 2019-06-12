@@ -1,4 +1,4 @@
-# 分布式数据库设计
+# 分布式数据库部署
 
 |版本|日期|描述|作者|
 |:-:|:-:|:-:|:-:|
@@ -103,3 +103,5 @@ $ docker exec -it mysql1 mysql -uroot -p
 3. [MySQL cluster in Docker (Chinese)](https://www.jianshu.com/p/cc837360c9e7)
 
 4. [Docker：网络模式详解](https://www.cnblogs.com/zuxing/articles/8780661.html)
+
+5. [MySQL Cluster Docker Image Reference](https://hub.docker.com/r/mysql/mysql-cluster/)

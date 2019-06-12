@@ -8,6 +8,7 @@
 * [Product Backlog](docs/productBacklog.md)
 * Design
     * [用户系统数据库设计](docs/design/userSystem.md)
+    * [分布式数据库部署](docs/design/db_cluster.md)
 * 生产规范与指南
     * [JavaScript 代码规范](docs/productionSpecification/jsCodeStyle.md)
     * [Python 代码规范](docs/productionSpecification/pyCodeStyle.md)
