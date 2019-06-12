@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>用户系统数据库设计 · GitBook</title>
+        <title>分布式数据库部署 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,8 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="db_cluster.html" />
     
+    <link rel="prev" href="userSystem.html" />
     
 
     </head>
@@ -179,7 +179,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.7.1" data-path="userSystem.html">
+        <li class="chapter " data-level="1.7.1" data-path="userSystem.html">
             
                 <a href="userSystem.html">
             
@@ -192,7 +192,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.2" data-path="db_cluster.html">
+        <li class="chapter active" data-level="1.7.2" data-path="db_cluster.html">
             
                 <a href="db_cluster.html">
             
@@ -330,7 +330,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >用户系统数据库设计</a>
+        <a href="../.." >分布式数据库部署</a>
     </h1>
 </div>
 
@@ -345,7 +345,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x7528;&#x6237;&#x7CFB;&#x7EDF;&#x6570;&#x636E;&#x5E93;&#x8BBE;&#x8BA1;">&#x7528;&#x6237;&#x7CFB;&#x7EDF;&#x6570;&#x636E;&#x5E93;&#x8BBE;&#x8BA1;</h1>
+                                <h1 id="&#x5206;&#x5E03;&#x5F0F;&#x6570;&#x636E;&#x5E93;&#x90E8;&#x7F72;">&#x5206;&#x5E03;&#x5F0F;&#x6570;&#x636E;&#x5E93;&#x90E8;&#x7F72;</h1>
 <table>
 <thead>
 <tr>
@@ -358,22 +358,79 @@
 <tbody>
 <tr>
 <td style="text-align:center">v0.1</td>
-<td style="text-align:center">2019&#x5E74;5&#x6708;24&#x65E5;</td>
-<td style="text-align:center">&#x521D;&#x7A3F;</td>
-<td style="text-align:center">BroInBro</td>
-</tr>
-<tr>
-<td style="text-align:center">v0.2</td>
 <td style="text-align:center">2019&#x5E74;6&#x6708;12&#x65E5;</td>
-<td style="text-align:center">&#x589E;&#x52A0;&#x5177;&#x4F53;&#x5B9E;&#x73B0;</td>
-<td style="text-align:center">&#x5F20;&#x4E09;&#x4E30;</td>
+<td style="text-align:center">&#x521D;&#x7A3F;</td>
+<td style="text-align:center">&#x5FEB;&#x4E50;&#x8214;&#x72D7;</td>
 </tr>
 </tbody>
 </table>
-<p><img src="../../assets/design/userSystem.png" alt="userSystem"></p>
-<pre><code class="lang-mysql">CREATE TABLE `account_info_account_info` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `username` varchar(200) NOT NULL UNIQUE, `email` varchar(200) NOT NULL UNIQUE, `phone` varchar(200) NOT NULL UNIQUE, `password` varchar(200) NOT NULL, `avatar` varchar(200) NOT NULL);
-COMMIT;
+<h1 id="&#x4F9D;&#x8D56;&#x5DE5;&#x5177;">&#x4F9D;&#x8D56;&#x5DE5;&#x5177;</h1>
+<h2 id="docker">Docker</h2>
+<p>&#x7248;&#x672C;&#xFF1A;18.09.6</p>
+<p>&#x7B80;&#x4ECB;&#xFF1A;</p>
+<ul>
+<li><p>Docker &#x53EF;&#x4EE5;&#x8BA9;&#x5F00;&#x53D1;&#x8005;&#x6253;&#x5305;&#x4ED6;&#x4EEC;&#x7684;&#x5E94;&#x7528;&#x4EE5;&#x53CA;&#x4F9D;&#x8D56;&#x5305;&#x5230;&#x4E00;&#x4E2A;&#x8F7B;&#x91CF;&#x7EA7;&#x3001;&#x53EF;&#x79FB;&#x690D;&#x7684;&#x5BB9;&#x5668;&#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x53D1;&#x5E03;&#x5230;&#x4EFB;&#x4F55;&#x6D41;&#x884C;&#x7684; Linux &#x673A;&#x5668;&#x4E0A;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x865A;&#x62DF;&#x5316;&#x3002;</p>
+</li>
+<li><p>&#x5BB9;&#x5668;&#x662F;&#x5B8C;&#x5168;&#x4F7F;&#x7528;&#x6C99;&#x7BB1;&#x673A;&#x5236;&#xFF0C;&#x76F8;&#x4E92;&#x4E4B;&#x95F4;&#x4E0D;&#x4F1A;&#x6709;&#x4EFB;&#x4F55;&#x63A5;&#x53E3;&#xFF0C;&#x66F4;&#x91CD;&#x8981;&#x7684;&#x662F;&#x5BB9;&#x5668;&#x6027;&#x80FD;&#x5F00;&#x9500;&#x6781;&#x4F4E;&#x3002;</p>
+</li>
+</ul>
+<h2 id="mysql-cluster">MySQL Cluster</h2>
+<p>&#x7248;&#x672C;&#xFF1A;docker mysql/mysql-cluster</p>
+<p>&#x7B80;&#x4ECB;&#xFF1A;</p>
+<ul>
+<li><p>MySQL Cluster&#x6784;&#x5EFA;&#x4E8E;NDB&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x4E4B;&#x4E0A;&#xFF0C;&#x63D0;&#x4F9B;&#x9AD8;&#x5EA6;&#x53EF;&#x4F38;&#x7F29;&#x3001;&#x5B9E;&#x65F6;&#x3001;&#x7B26;&#x5408;ACID&#x7684;&#x4E8B;&#x52A1;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x7ED3;&#x5408;&#x4E86;99.999%&#x7684;&#x53EF;&#x7528;&#x6027;&#x548C;&#x5F00;&#x653E;&#x6E90;&#x7801;&#x7684;&#x4F4E;TCO&#x3002;</p>
+</li>
+<li><p>MySQL Cluster&#x662F;&#x56F4;&#x7ED5;&#x5206;&#x5E03;&#x5F0F;&#x3001;&#x591A;&#x4E3B;&#x3001;&#x670D;&#x52A1;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x6CA1;&#x6709;&#x5355;&#x70B9;&#x6545;&#x969C;&#xFF0C;&#x5B83;&#x5728;&#x5546;&#x54C1;&#x786C;&#x4EF6;&#x4E0A;&#x6A2A;&#x5411;&#x6269;&#x5C55;&#xFF0C;&#x4EE5;&#x63D0;&#x4F9B;&#x901A;&#x8FC7;SQL&#x548C;NoSQL&#x63A5;&#x53E3;&#x8BBF;&#x95EE;&#x7684;&#x8BFB;&#x5199;&#x5BC6;&#x96C6;&#x578B;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#x3002;</p>
+</li>
+</ul>
+<h1 id="&#x8BBE;&#x8BA1;">&#x8BBE;&#x8BA1;</h1>
+<h1 id="&#x4F7F;&#x7528;">&#x4F7F;&#x7528;</h1>
+<p>&#x67E5;&#x770B; Docker &#x7F51;&#x7EDC;</p>
+<pre><code class="lang-bash">$ docker network ls
 </code></pre>
+<p>&#x8FD0;&#x884C;&#x5BB9;&#x5668;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; --network &#x6807;&#x5FD7;&#x6765;&#x6307;&#x5B9A;&#x5BB9;&#x5668;&#x5E94;&#x8FDE;&#x63A5;&#x7684;&#x7F51;&#x7EDC;&#x3002;</p>
+<pre><code class="lang-bash">$ docker run --network=&lt;NETWORK&gt;
+</code></pre>
+<p>&#x5B89;&#x88C5; mysql-cluster &#x955C;&#x50CF;</p>
+<pre><code class="lang-bash">$ docker pull mysql/mysql-cluster
+</code></pre>
+<p>&#x65B0;&#x5EFA;&#x5C40;&#x57DF;&#x7F51;</p>
+<pre><code class="lang-bash">$ docker network create cluster --subnet=192.168.0.0/16
+</code></pre>
+<p>&#x7136;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x542F;&#x52A8;&#x4E86;&#xFF0C;&#x5148;&#x542F;&#x52A8; management node</p>
+<pre><code class="lang-bash">$ docker run <span class="hljs-_">-d</span> --net=cluster --name=management1 --ip=192.168.0.2 mysql/mysql-cluster ndb_mgmd
+</code></pre>
+<p>&#x7136;&#x540E;&#x542F;&#x52A8; data nodes</p>
+<pre><code class="lang-bash">$ docker run <span class="hljs-_">-d</span> --net=cluster --name=ndb1 --ip=192.168.0.3 mysql/mysql-cluster ndbd
+$ docker run <span class="hljs-_">-d</span> --net=cluster --name=ndb2 --ip=192.168.0.4 mysql/mysql-cluster ndbd
+</code></pre>
+<p>&#x518D;&#x542F;&#x52A8; MySQL server node</p>
+<pre><code class="lang-bash">$ docker run <span class="hljs-_">-d</span> --net=cluster --name=mysql1 --ip=192.168.0.10 <span class="hljs-_">-e</span> MYSQL_RANDOM_ROOT_PASSWORD=<span class="hljs-literal">true</span> mysql/mysql-cluster mysqld
+</code></pre>
+<p>&#x5F97;&#x5230; MySQL &#x5BC6;&#x7801;</p>
+<pre><code class="lang-bash">$ docker logs mysql1 2&gt;&amp;1 | grep PASSWORD
+$ docker <span class="hljs-built_in">exec</span> -it mysql1 mysql -uroot -p
+</code></pre>
+<p>&#x5229;&#x7528; management node &#x6765;&#x7BA1;&#x7406; cluster</p>
+<pre><code class="lang-bash">$ docker run -it --net=cluster mysql/mysql-cluster ndb_mgm
+ndb_mgm&gt; show
+</code></pre>
+<p>&#x5229;&#x7528; MySQL server node &#x6765;&#x4F7F;&#x7528; cluster</p>
+<pre><code class="lang-bash">$ docker <span class="hljs-built_in">exec</span> -it mysql1 mysql -uroot -p
+</code></pre>
+<h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
+<ol>
+<li><p><a href="https://www.cnblogs.com/yufeng218/p/8370670.html" target="_blank">Centos7&#x4E0A;&#x5B89;&#x88C5;docker</a></p>
+</li>
+<li><p><a href="https://mysqlmed.wordpress.com/2017/09/04/mysql-cluster-in-docker-quick-step-by-step/" target="_blank">MySQL cluster in Docker (English)</a></p>
+</li>
+<li><p><a href="https://www.jianshu.com/p/cc837360c9e7" target="_blank">MySQL cluster in Docker (Chinese)</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/zuxing/articles/8780661.html" target="_blank">Docker&#xFF1A;&#x7F51;&#x7EDC;&#x6A21;&#x5F0F;&#x8BE6;&#x89E3;</a></p>
+</li>
+<li><p><a href="https://hub.docker.com/r/mysql/mysql-cluster/" target="_blank">MySQL Cluster Docker Image Reference</a></p>
+</li>
+</ol>
 
                                 
                                 </section>
@@ -401,10 +458,10 @@ COMMIT;
 
             
                 
-                
-                <a href="db_cluster.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 分布式数据库部署">
-                    <i class="fa fa-angle-right"></i>
+                <a href="userSystem.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 用户系统数据库设计">
+                    <i class="fa fa-angle-left"></i>
                 </a>
+                
                 
             
         
@@ -413,7 +470,7 @@ COMMIT;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"用户系统数据库设计","level":"1.7.1","depth":2,"next":{"title":"分布式数据库部署","level":"1.7.2","depth":2,"path":"docs/design/db_cluster.md","ref":"docs/design/db_cluster.md","articles":[]},"previous":{"title":"Design","level":"1.7","depth":1,"ref":"","articles":[{"title":"用户系统数据库设计","level":"1.7.1","depth":2,"path":"docs/design/userSystem.md","ref":"docs/design/userSystem.md","articles":[]},{"title":"分布式数据库部署","level":"1.7.2","depth":2,"path":"docs/design/db_cluster.md","ref":"docs/design/db_cluster.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/design/userSystem.md","mtime":"2019-06-12T02:34:41.948Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-12T11:13:07.156Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"分布式数据库部署","level":"1.7.2","depth":2,"next":{"title":"生产规范与指南","level":"1.8","depth":1,"ref":"","articles":[{"title":"JavaScript 代码规范","level":"1.8.1","depth":2,"path":"docs/productionSpecification/jsCodeStyle.md","ref":"docs/productionSpecification/jsCodeStyle.md","articles":[]},{"title":"Python 代码规范","level":"1.8.2","depth":2,"path":"docs/productionSpecification/pyCodeStyle.md","ref":"docs/productionSpecification/pyCodeStyle.md","articles":[]}]},"previous":{"title":"用户系统数据库设计","level":"1.7.1","depth":2,"path":"docs/design/userSystem.md","ref":"docs/design/userSystem.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/design/db_cluster.md","mtime":"2019-06-12T11:12:58.671Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-12T11:13:07.156Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
