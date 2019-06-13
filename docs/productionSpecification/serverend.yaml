@@ -45,7 +45,7 @@ paths:
                 properties:
                   status_code:
                     type: integer
-                    description: An integer code indicating the response status. 200 for Successfully login, 406 for no such username or unmatched password.
+                    description: An integer code indicating the response status. 200 for successfully login, 406 for no such username or unmatched password.
           examples:
             SuccessfullyLogin:
               status_code: 200
@@ -74,7 +74,7 @@ paths:
                 properties:
                   status_code:
                     type: integer
-                    description: An integer code indicating the response status. 200 for Successfully queryed, 400 for necessary field not filled, 404 for user not found.
+                    description: An integer code indicating the response status. 200 for successfully queryed, 400 for necessary field not filled, 404 for user not found.
                   data:
                     type: object
                     description: A JSON object containing queryed info. Only avaliable when status_code is 200.
@@ -132,10 +132,52 @@ paths:
                 properties:
                   status_code:
                     type: integer
-                    description: An integer code indicating the response status. 201 for Successfully updated, 400 for necessary field not filled, 401 for requesting before login.
+                    description: An integer code indicating the response status. 201 for successfully updated, 400 for necessary field not filled, 401 for requesting before login.
           examples:
             SuccessfullyUpdated:
               status_code: 201
+            FieldNotFilled:
+              status_code: 400
+            NotLogin:
+              status_code: 401
+        '500':
+          description: Serverend or backend error.
+  /avatar:
+    post:
+      summary: Upload avatar image
+      description: Upload avatar image and get its filename on server
+      requestBody:
+        description: The image to be uploaded
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Network OK. A JSON object containing status 🐴 will be returned to requester.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    description: An integer code indicating the response status. 201 for image successfully saved, 400 for necessary field not filled, 401 for uploading before login.
+                  data:
+                    type: object
+                    properties:
+                      filename:
+                        type: string
+                        description: The filename of the uploaded avatar image on the server. One can access it with relative url /public/avatar/filename. Only available when status_code is 201.
+          examples:
+            SuccessfullySaved:
+              status_code: 201
+              data:
+                filename: EXAMPLE.PNG
             FieldNotFilled:
               status_code: 400
             NotLogin:
@@ -169,7 +211,7 @@ paths:
                 properties:
                   status_code:
                     type: integer
-                    description: An integer code indicating the response status. 201 for Successfully created, 400 for necessary field not filled, 409 for username conflict.
+                    description: An integer code indicating the response status. 201 for successfully created, 400 for necessary field not filled, 409 for username conflict.
           examples:
             SuccessfullyCreated:
               status_code: 201
@@ -179,3 +221,4 @@ paths:
               status_code: 409
         '500':
           description: Serverend or backend error.
+  
