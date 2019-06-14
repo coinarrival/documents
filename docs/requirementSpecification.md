@@ -120,42 +120,42 @@
 - 登陆页面
 
   用户可以登陆账号前往主页面，或通过注册按钮前往注册页面
-  ![login](../assets/design/login.png)
+  ![login](../assets/design/login.PNG)
 
 - 注册页面
 
   用户可以注册账号，或通过登录按钮前往登陆页面
-  ![registration](../assets/design/registration.png)
+  ![registration](../assets/design/registration.PNG)
 
 - 任务列表页(主页面)
   
   用户可以查看系统上的任务，并通过选择页数浏览不同页的任务。点击任务可以前往任务详情页面；点击接受按钮可以接受任务；点击发布任务按钮可以前往发布任务页面；点击货币按钮可以前往货币页面；点击个人信息按钮，可以前往个人信息页面
-  ![taskList](../assets/design/taskList.png)
+  ![taskList](../assets/design/taskList.PNG)
 
 - 任务详情页
 
   用户可以查看任务的详细描述。点击接受按钮可以接受任务；点击返回按钮可以返回主页面
-  ![taskInfo](../assets/design/taskInfo.png)
+  ![taskInfo](../assets/design/taskInfo.PNG)
 
 - 任务发布页面
 
   用户可以通过填写任务详情来发布任务。点击发布任务可以发布任务；点击返回按钮可以返回主页面
-  ![taskPublication](../assets/design/taskPublication.png)
+  ![taskPublication](../assets/design/taskPublication.PNG)
 
 - 任务完成页面
 
   任务发布者可以确认任务完成。点击确认完成按钮，任务完成，接收者可以收到报酬，发布者减去相应货币；点击返回按钮，返回主页面
-  ![taskVerification](../assets/design/taskVerification.png)
+  ![taskVerification](../assets/design/taskVerification.PNG)
 
 - 个人信息页面
 
   用户可以修改个人信息，包括头像，密码，邮箱，电话，性别，专业，学号，姓名。点击修改按钮可以修改个人信息；点击货币按钮可以前往货币页面；点击任务按钮，可以前往主页面
-  ![userInfo](../assets/design/userInfo.png)
+  ![userInfo](../assets/design/userInfo.PNG)
 
 - 货币页面
 
   用户可以查看当前账号余额。点击充值按钮可以充值货币；点击提现按钮可以提现货币；点击任务按钮可以前往主页面；点击个人信息按钮，可以前往个人信息页面
-  ![currency](../assets/design/currency.png)
+  ![currency](../assets/design/currency.PNG)
 
 ### 3.3 外部接口需求
 
