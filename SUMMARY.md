@@ -2,11 +2,14 @@
 
 * [币达](README.md)
 * [About](docs/about.md)
+* [Installation](docs/installation.md)
+* [Manual](docs/manual.md)
+* [SRS](docs/requirementSpecification.md)
 * [Team Profile](docs/teamProfile.md)
 * [Investigation](docs/investigation.md)
 * [Vision](docs/vision.md)
 * [Product Backlog](docs/productBacklog.md)
-* Design
+* [Design](docs/softwaredesign.md)
     * [用户系统数据库设计](docs/design/userSystem.md)
     * [分布式数据库部署](docs/design/db_cluster.md)
 * 生产规范与指南
