@@ -111,6 +111,8 @@ paths:
                   type: string
                 phone:
                   type: string
+                avatar:
+                  type: string
       responses:
         '200':
           description: Network OK. A JSON object containing status 🐴 will be returned to requester.
