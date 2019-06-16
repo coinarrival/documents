@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: CoinArrival-Backend
   description: Backend API conrtains of CoinArrival.
-  version: 0.1.0
+  version: 0.2.0
   
 servers:
   - url: http://localhost:8000
@@ -129,7 +129,7 @@ paths:
                     properties:
                       which:
                         type: string
-                        description: Which field is conflict, only available when status_code is 409.
+                        description: Describing which field is conflict, only available when status_code is 409.
           examples:
             SuccessfullyUpdated:
               status_code: 201
