@@ -160,6 +160,12 @@ paths:
                 password:
                   type: string
                   required: true
+                email:
+                  type: string
+                  required: true
+                phone:
+                  type: string
+                  required: true
       responses:
         '200':
           description: Network OK. A JSON object containing status 🐴 will be returned to requester.
@@ -170,14 +176,22 @@ paths:
                 properties:
                   status_code:
                     type: integer
-                    description: An integer code indicating the response status. 201 for Successfully created, 400 for necessary field not filled or invalid format, 409 for confict username.
+                    description: An integer code indicating the response status. 201 for Successfully created, 400 for necessary field not filled or invalid format, 409 for conflict field.
+                  data:
+                    type: object
+                    properties:
+                      which:
+                        type: string
+                        description: Describing which field is conflict, only available when status_code is 409.
           examples:
             SuccessfullyCreated:
               status_code: 201
             InvalidFormat:
               status_code: 400
-            ConflictUsername:
+            ConflictField:
               status_code: 409
+              data:
+                which: "email"
         '500':
           description: Backend error.
         
