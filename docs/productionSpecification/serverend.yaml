@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: CoinArrival-Serverend
   description: Serverend API conrtains of CoinArrival.
-  version: 0.1.0
+  version: 0.2.0
   
 servers:
   - url: http://localhost:4000
@@ -132,7 +132,13 @@ paths:
                 properties:
                   status_code:
                     type: integer
-                    description: An integer code indicating the response status. 201 for successfully updated, 400 for necessary field not filled, 401 for requesting before login.
+                    description: An integer code indicating the response status. 201 for successfully updated, 400 for necessary field not filled, 401 for requesting before login, 409 for conflict field.
+                  data:
+                    type: object
+                    properties:
+                      which:
+                        type: string
+                        description: Describing which field is conflict. Only available when status_code is 409.
           examples:
             SuccessfullyUpdated:
               status_code: 201
@@ -140,6 +146,10 @@ paths:
               status_code: 400
             NotLogin:
               status_code: 401
+            ConflictField:
+              status_code: 409
+              data:
+                which: email
         '500':
           description: Serverend or backend error.
   /avatar:
@@ -201,6 +211,12 @@ paths:
                 password:
                   type: string
                   required: true
+                email:
+                  type: string
+                  required: true
+                phone:
+                  type: string
+                  required: true
       responses:
         '200':
           description: Network OK. A JSON object containing status 🐴 will be returned to requester.
@@ -212,6 +228,12 @@ paths:
                   status_code:
                     type: integer
                     description: An integer code indicating the response status. 201 for successfully created, 400 for necessary field not filled, 409 for username conflict.
+                  data:
+                    type: object
+                    properties:
+                      which: 
+                        type: string
+                        description: Describing which field is conflict. Only available when status_code is 409.
           examples:
             SuccessfullyCreated:
               status_code: 201
@@ -219,6 +241,7 @@ paths:
               status_code: 400
             ConflictUsername:
               status_code: 409
+              data:
+                which: email
         '500':
           description: Serverend or backend error.
-  
