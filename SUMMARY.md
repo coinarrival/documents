@@ -18,9 +18,13 @@
     * Database Design
         * [用户系统数据库设计](docs/design/userSystem.md)
         * [分布式数据库部署](docs/design/db_cluster.md)
+    * API Design
+        * [服务端接口设计](docs/design/serverendAPI.md)
+        * [后端接口设计](docs/design/backendAPI.md)
 * 生产规范与指南
     * [JavaScript 代码规范](docs/productionSpecification/jsCodeStyle.md)
     * [Python 代码规范](docs/productionSpecification/pyCodeStyle.md)
+    * [RESTful API 设计规范](docs/productionSpecification/restfulAPIDesign.md)
 * Meeting Recording
     * [Inception 19/5/6](docs/meettingRecording/inception_5_06.md)
     * [Inception 19/5/27](docs/meettingRecording/inception_5_27.md)
