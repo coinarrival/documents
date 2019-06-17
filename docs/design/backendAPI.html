@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>State Model · GitBook</title>
+        <title>后端接口设计 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="sequence.html" />
     
-    
-    <link rel="prev" href="domain.html" />
+    <link rel="prev" href="serverendAPI.html" />
     
 
     </head>
@@ -207,9 +205,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.9.1" data-path="usecase.html">
+        <li class="chapter " data-level="1.9.1" data-path="../srs/usecase.html">
             
-                <a href="usecase.html">
+                <a href="../srs/usecase.html">
             
                     
                     Usecase Diagram
@@ -220,9 +218,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.9.2" data-path="activity.html">
+        <li class="chapter " data-level="1.9.2" data-path="../srs/activity.html">
             
-                <a href="activity.html">
+                <a href="../srs/activity.html">
             
                     
                     Usecases And Activity Diagram
@@ -233,9 +231,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.9.3" data-path="domain.html">
+        <li class="chapter " data-level="1.9.3" data-path="../srs/domain.html">
             
-                <a href="domain.html">
+                <a href="../srs/domain.html">
             
                     
                     Domain Model
@@ -246,9 +244,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.9.4" data-path="state.html">
+        <li class="chapter " data-level="1.9.4" data-path="../srs/state.html">
             
-                <a href="state.html">
+                <a href="../srs/state.html">
             
                     
                     State Model
@@ -259,9 +257,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.9.5" data-path="sequence.html">
+        <li class="chapter " data-level="1.9.5" data-path="../srs/sequence.html">
             
-                <a href="sequence.html">
+                <a href="../srs/sequence.html">
             
                     
                     System Sequence Diagram
@@ -305,9 +303,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.10.1.1" data-path="../design/userSystem.html">
+        <li class="chapter " data-level="1.10.1.1" data-path="userSystem.html">
             
-                <a href="../design/userSystem.html">
+                <a href="userSystem.html">
             
                     
                     用户系统数据库设计
@@ -318,9 +316,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10.1.2" data-path="../design/db_cluster.html">
+        <li class="chapter " data-level="1.10.1.2" data-path="db_cluster.html">
             
-                <a href="../design/db_cluster.html">
+                <a href="db_cluster.html">
             
                     
                     分布式数据库部署
@@ -350,9 +348,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.10.2.1" data-path="../design/serverendAPI.html">
+        <li class="chapter " data-level="1.10.2.1" data-path="serverendAPI.html">
             
-                <a href="../design/serverendAPI.html">
+                <a href="serverendAPI.html">
             
                     
                     服务端接口设计
@@ -363,9 +361,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10.2.2" data-path="../design/backendAPI.html">
+        <li class="chapter active" data-level="1.10.2.2" data-path="backendAPI.html">
             
-                <a href="../design/backendAPI.html">
+                <a href="backendAPI.html">
             
                     
                     后端接口设计
@@ -519,7 +517,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >State Model</a>
+        <a href="../.." >后端接口设计</a>
     </h1>
 </div>
 
@@ -534,27 +532,15 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="state-model">State Model</h1>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">&#x7248;&#x672C;</th>
-<th style="text-align:center">&#x65E5;&#x671F;</th>
-<th style="text-align:center">&#x63CF;&#x8FF0;</th>
-<th style="text-align:center">&#x4F5C;&#x8005;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">v0.1</td>
-<td style="text-align:center">2019&#x5E74;6&#x6708;16&#x65E5;</td>
-<td style="text-align:center">&#x4EFB;&#x52A1;&#x5BF9;&#x8C61;&#x72B6;&#x6001;&#x6A21;&#x578B;&#x521D;&#x7A3F;</td>
-<td style="text-align:center">&#x5168;&#x5458;</td>
-</tr>
-</tbody>
-</table>
-<p>&#x72B6;&#x6001;&#x56FE;&#x4E2D;&#x63CF;&#x8FF0;&#x7684;&#x5BF9;&#x8C61;&#x662F;&#x9886;&#x57DF;&#x6A21;&#x578B;&#x4E2D;&#x7684; <code>task</code> (&#x4EFB;&#x52A1;)&#x5BF9;&#x8C61;&#x3002;</p>
-<p><img src="../../assets/srs/state_diagram.png" alt="stateModel"></p>
+                                <h1 id="&#x540E;&#x7AEF;-api-&#x8BBE;&#x8BA1;">&#x540E;&#x7AEF; API &#x8BBE;&#x8BA1;</h1>
+<p><a href="https://github.com/coinarrival/documents/blob/master/docs/productionSpecification/backend.yaml" target="_blank">&#x540E;&#x7AEF; API &#x8BBE;&#x8BA1;&#x6E90;&#x6587;&#x4EF6;</a></p>
+<h2 id="&#x5982;&#x4F55;&#x4F7F;&#x7528;&#xFF1F;">&#x5982;&#x4F55;&#x4F7F;&#x7528;&#xFF1F;</h2>
+<p>&#x672C; API &#x8BBE;&#x8BA1;&#x6587;&#x6863;&#x9075;&#x4ECE; OpenAPI 3.0.2 &#x6807;&#x51C6;&#x7F16;&#x5199;&#xFF0C;&#x60A8;&#x53EF;&#x4EE5;&#x8DDF;&#x968F;&#x4EE5;&#x4E0B;&#x6307;&#x5357;&#x901A;&#x8FC7; GUI &#x67E5;&#x770B;&#x5176;&#x5185;&#x5BB9;&#xFF1A;</p>
+<ol>
+<li>&#x6253;&#x5F00; <a href="http://editor.swagger.io/" target="_blank">Swagger &#x5728;&#x7EBF;&#x9884;&#x89C8;&#x5DE5;&#x5177;</a></li>
+<li>&#x5C06;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x590D;&#x5236;&#x5230;&#x7F16;&#x8F91;&#x6846;&#xFF0C;&#x6216;&#x8005;&#x70B9;&#x51FB;&#x5DE6;&#x4E0A;&#x89D2; File &#x6807;&#x7B7E;&#xFF0C;&#x5E76;&#x901A;&#x8FC7; URL &#x6216;&#x8005;&#x6587;&#x4EF6;&#x5F15;&#x5165;&#x3002;</li>
+</ol>
+<p>&#x7531;&#x4E8E; Swagger Editor &#x672C;&#x8EAB;&#x7684;&#x9650;&#x5236;&#xFF0C;&#x4E3A;&#x4E86;&#x8FBE;&#x5230;&#x591A;&#x4E2A; example &#x7684;&#x76EE;&#x6807;&#x6548;&#x679C;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x5F97;&#x4E0D;&#x4F7F;&#x7528;&#x975E;&#x6807;&#x51C6; OpenAPI &#x7684;&#x8BED;&#x6CD5;&#xFF0C;&#x8FD9;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x7F16;&#x8F91;&#x5668;&#x62A5;&#x9519;&#xFF0C;&#x4F46;&#x5E76;&#x4E0D;&#x5F71;&#x54CD;&#x663E;&#x793A;&#x6548;&#x679C;&#xFF0C;&#x60A8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x70B9;&#x51FB; Hide &#x6765;&#x9690;&#x85CF; Errors&#x3002;</p>
 
                                 
                                 </section>
@@ -582,14 +568,10 @@
 
             
                 
-                <a href="domain.html" class="navigation navigation-prev " aria-label="Previous page: Domain Model">
+                <a href="serverendAPI.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 服务端接口设计">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="sequence.html" class="navigation navigation-next " aria-label="Next page: System Sequence Diagram">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -598,7 +580,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"State Model","level":"1.9.4","depth":2,"next":{"title":"System Sequence Diagram","level":"1.9.5","depth":2,"path":"docs/srs/sequence.md","ref":"docs/srs/sequence.md","articles":[]},"previous":{"title":"Domain Model","level":"1.9.3","depth":2,"path":"docs/srs/domain.md","ref":"docs/srs/domain.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/srs/state.md","mtime":"2019-06-16T08:08:39.910Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-17T06:40:39.956Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"后端接口设计","level":"1.10.2.2","depth":3,"next":{"title":"生产规范与指南","level":"1.11","depth":1,"ref":"","articles":[{"title":"JavaScript 代码规范","level":"1.11.1","depth":2,"path":"docs/productionSpecification/jsCodeStyle.md","ref":"docs/productionSpecification/jsCodeStyle.md","articles":[]},{"title":"Python 代码规范","level":"1.11.2","depth":2,"path":"docs/productionSpecification/pyCodeStyle.md","ref":"docs/productionSpecification/pyCodeStyle.md","articles":[]},{"title":"RESTful API 设计规范","level":"1.11.3","depth":2,"path":"docs/productionSpecification/restfulAPIDesign.md","ref":"docs/productionSpecification/restfulAPIDesign.md","articles":[]}]},"previous":{"title":"服务端接口设计","level":"1.10.2.1","depth":3,"path":"docs/design/serverendAPI.md","ref":"docs/design/serverendAPI.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/design/backendAPI.md","mtime":"2019-06-17T06:39:46.304Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-17T06:40:39.956Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
