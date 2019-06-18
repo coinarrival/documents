@@ -22,4 +22,4 @@ Meeting Topic: 产品用例图及多泳道图的绘制
 
 ## 思维导图
 
-[![VylNCR.md.png](https://s2.ax1x.com/2019/06/10/VylNCR.md.png)](https://imgchr.com/i/VylNCR)
+[![VylNCR.md.png](../../assets/design/meeting_5_27_mind_graph.png)](../../assets/design/meeting_5_27_mind_graph.png)
