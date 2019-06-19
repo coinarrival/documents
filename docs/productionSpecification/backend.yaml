@@ -70,21 +70,65 @@ paths:
                     type: object
                     description: Queryed user info. Only available when status_code is 200.
                     properties:
+                      userid:
+                        type: string
                       username:
+                        type: string
+                      gender:
                         type: string
                       email:
                         type: string
                       phone:
                         type: string
+                      school:
+                        type: string
+                      major:
+                        type: string
+                      age:
+                        type: integer
+                      role:
+                        type: string
+                        enum: ['teacher', 'student']
+                      studentID:
+                        type: string
+                        description: Only available when role is student
+                      grade:
+                        type: string
+                        description: Only available when role is student
+                      teacherID:
+                        type: string
+                        description: Only available when role is teacher
                       avatar:
                         type: string
           examples:
-            QuerySuccessfully:
+            SuccessfulltQueryed_Teacher:
               status_code: 200
               data:
+                userid: '123'
                 username: example
+                gender: 'male'
                 email: example@example.com
                 phone: 12345678901
+                school: 'SYSU'
+                major: 'SE'
+                age: 18
+                role: 'student'
+                studentID: '16340299'
+                grade: '2016'
+                avatar: EXAMPLE.PNG
+            SuccessfulltQueryed_Student:
+              status_code: 200
+              data:
+                userid: '123'
+                username: example
+                gender: 'male'
+                email: example@example.com
+                phone: 12345678901
+                school: 'SYSU'
+                major: 'SE'
+                age: 34
+                role: 'teacher'
+                teacherID: '151273'
                 avatar: EXAMPLE.PNG
             NoSuchUser:
               status_code: 404
@@ -105,18 +149,27 @@ paths:
                   required: true
                 password:
                   type: string
+                gender:
+                  type: string
                 email:
                   type: string
                 phone:
-                  type: string
-                gender:
                   type: string
                 school:
                   type: string
                 major:
                   type: string
                 age:
+                  type: integer
+                studentID:
                   type: string
+                  description: Only available when role is student
+                grade:
+                  type: string
+                  description: Only available when role is student
+                teacherID:
+                  type: string
+                  description: Only available when role is treacher
                 avatar:
                   type: string
       responses:
@@ -627,3 +680,45 @@ paths:
                 max_pages: 15
         '500':
           description: Backend error.
+    post:
+      summary: Finish one created task for a specific user.
+      description: Finish one created task for a specific user by giving the userID, taskID and the username of issuer. This API can only be called by the issuer of the task.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userID:
+                  type: string
+                  description: UserID of the user who accept the task.
+                taskID:
+                  type: string
+                  description: TaskID of the task to be finished.
+                username:
+                  type: string
+                  description: Username of the issuer of the task to be finished.
+      responses:
+        '200':
+          description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    description: 'An integer code indicating the response status. 200 for Successfully finished, 400 for necessary field not filled or invalid format, 404 for no such userID, username or taskID, 401 for not authorized.'
+          examples:
+            SuccessfullyAccept:
+              status_code: 201
+            FieldNotFilled:
+              status_code: 400
+            NoSuchEntity:
+              status_code: 404
+            MupltipleAccptance:
+              status_code: 401
+        '500':
+          description: Backend error.
+          
+      
