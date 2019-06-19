@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Inception 19/5/27 · GitBook</title>
+        <title>后端接口设计 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -58,7 +58,7 @@
 
     
     
-    <link rel="prev" href="inception_5_06.html" />
+    <link rel="prev" href="serverendAPI.html" />
     
 
     </head>
@@ -303,9 +303,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.10.1.1" data-path="../design/userSystem.html">
+        <li class="chapter " data-level="1.10.1.1" data-path="userSystem.html">
             
-                <a href="../design/userSystem.html">
+                <a href="userSystem.html">
             
                     
                     用户系统数据库设计
@@ -316,9 +316,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10.1.2" data-path="../design/db_cluster.html">
+        <li class="chapter " data-level="1.10.1.2" data-path="db_cluster.html">
             
-                <a href="../design/db_cluster.html">
+                <a href="db_cluster.html">
             
                     
                     分布式数据库部署
@@ -348,9 +348,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.10.2.1" data-path="../design/serverendAPI.html">
+        <li class="chapter " data-level="1.10.2.1" data-path="serverendAPI.html">
             
-                <a href="../design/serverendAPI.html">
+                <a href="serverendAPI.html">
             
                     
                     服务端接口设计
@@ -361,9 +361,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10.2.2" data-path="../design/backendAPI.html">
+        <li class="chapter active" data-level="1.10.2.2" data-path="backendAPI.html">
             
-                <a href="../design/backendAPI.html">
+                <a href="backendAPI.html">
             
                     
                     后端接口设计
@@ -456,9 +456,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.12.1" data-path="inception_5_06.html">
+        <li class="chapter " data-level="1.12.1" data-path="../meettingRecording/inception_5_06.html">
             
-                <a href="inception_5_06.html">
+                <a href="../meettingRecording/inception_5_06.html">
             
                     
                     Inception 19/5/6
@@ -469,9 +469,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.12.2" data-path="inception_5_27.html">
+        <li class="chapter " data-level="1.12.2" data-path="../meettingRecording/inception_5_27.html">
             
-                <a href="inception_5_27.html">
+                <a href="../meettingRecording/inception_5_27.html">
             
                     
                     Inception 19/5/27
@@ -517,7 +517,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Inception 19/5/27</a>
+        <a href="../.." >后端接口设计</a>
     </h1>
 </div>
 
@@ -532,25 +532,15 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="inception-meeting-record">Inception Meeting Record</h1>
-<h2 id="basic-information">Basic Information</h2>
-<p>Date: 2019/5/27 19:00-20:30</p>
-<p>Participant: Hairi&#x3001;&#x5FEB;&#x4E50;&#x8214;&#x72D7;&#x3001;BroInBro&#x3001;&#x5F20;&#x4E09;&#x4E30;&#x3001;Cynthia&#x3001;&#x65E0;&#x60C5;&#x54B8;&#x9C7C;</p>
-<p>Recorder: &#x5FEB;&#x4E50;&#x8214;&#x72D7;</p>
-<p>Meeting Topic: &#x4EA7;&#x54C1;&#x7528;&#x4F8B;&#x56FE;&#x53CA;&#x591A;&#x6CF3;&#x9053;&#x56FE;&#x7684;&#x7ED8;&#x5236;</p>
-<h2 id="agenda">Agenda</h2>
+                                <h1 id="&#x540E;&#x7AEF;-api-&#x8BBE;&#x8BA1;">&#x540E;&#x7AEF; API &#x8BBE;&#x8BA1;</h1>
+<p><a href="https://github.com/coinarrival/documents/blob/master/docs/productionSpecification/backend.yaml" target="_blank">&#x540E;&#x7AEF; API &#x8BBE;&#x8BA1;&#x6E90;&#x6587;&#x4EF6;</a></p>
+<h2 id="&#x5982;&#x4F55;&#x4F7F;&#x7528;&#xFF1F;">&#x5982;&#x4F55;&#x4F7F;&#x7528;&#xFF1F;</h2>
+<p>&#x672C; API &#x8BBE;&#x8BA1;&#x6587;&#x6863;&#x9075;&#x4ECE; OpenAPI 3.0.2 &#x6807;&#x51C6;&#x7F16;&#x5199;&#xFF0C;&#x60A8;&#x53EF;&#x4EE5;&#x8DDF;&#x968F;&#x4EE5;&#x4E0B;&#x6307;&#x5357;&#x901A;&#x8FC7; GUI &#x67E5;&#x770B;&#x5176;&#x5185;&#x5BB9;&#xFF1A;</p>
 <ol>
-<li><p>&#x5C55;&#x793A;&#x4E4B;&#x524D;&#x4EA7;&#x54C1;&#x8C03;&#x7814;&#x7ED3;&#x679C;</p>
-</li>
-<li><p>&#x4EA7;&#x54C1;&#x7684;&#x8FDB;&#x4E00;&#x6B65;&#x8BA8;&#x8BBA;&#xFF0C;&#x5206;&#x6790;&#x4E1A;&#x52A1;&#x6A21;&#x578B;</p>
-</li>
-<li><p>&#x4EA7;&#x54C1;&#x7528;&#x4F8B;&#x56FE;&#x7684;&#x7ED8;&#x5236;</p>
-</li>
-<li><p>&#x6CE8;&#x518C;&#x548C;&#x767B;&#x5F55;&#x6D41;&#x7A0B;&#x7684;&#x591A;&#x6CF3;&#x9053;&#x56FE;&#x7ED8;&#x5236;</p>
-</li>
+<li>&#x6253;&#x5F00; <a href="http://editor.swagger.io/" target="_blank">Swagger &#x5728;&#x7EBF;&#x9884;&#x89C8;&#x5DE5;&#x5177;</a></li>
+<li>&#x5C06;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x590D;&#x5236;&#x5230;&#x7F16;&#x8F91;&#x6846;&#xFF0C;&#x6216;&#x8005;&#x70B9;&#x51FB;&#x5DE6;&#x4E0A;&#x89D2; File &#x6807;&#x7B7E;&#xFF0C;&#x5E76;&#x901A;&#x8FC7; URL &#x6216;&#x8005;&#x6587;&#x4EF6;&#x5F15;&#x5165;&#x3002;</li>
 </ol>
-<h2 id="&#x601D;&#x7EF4;&#x5BFC;&#x56FE;">&#x601D;&#x7EF4;&#x5BFC;&#x56FE;</h2>
-<p><a href="../../assets/design/meeting_5_27_mind_graph.png"><img src="../../assets/design/meeting_5_27_mind_graph.png" alt="VylNCR.md.png"></a></p>
+<p>&#x7531;&#x4E8E; Swagger Editor &#x672C;&#x8EAB;&#x7684;&#x9650;&#x5236;&#xFF0C;&#x4E3A;&#x4E86;&#x8FBE;&#x5230;&#x591A;&#x4E2A; example &#x7684;&#x76EE;&#x6807;&#x6548;&#x679C;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x5F97;&#x4E0D;&#x4F7F;&#x7528;&#x975E;&#x6807;&#x51C6; OpenAPI &#x7684;&#x8BED;&#x6CD5;&#xFF0C;&#x8FD9;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x7F16;&#x8F91;&#x5668;&#x62A5;&#x9519;&#xFF0C;&#x4F46;&#x5E76;&#x4E0D;&#x5F71;&#x54CD;&#x663E;&#x793A;&#x6548;&#x679C;&#xFF0C;&#x60A8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x70B9;&#x51FB; Hide &#x6765;&#x9690;&#x85CF; Errors&#x3002;</p>
 
                                 
                                 </section>
@@ -578,7 +568,7 @@
 
             
                 
-                <a href="inception_5_06.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Inception 19/5/6">
+                <a href="serverendAPI.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 服务端接口设计">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -590,7 +580,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Inception 19/5/27","level":"1.12.2","depth":2,"previous":{"title":"Inception 19/5/6","level":"1.12.1","depth":2,"path":"docs/meettingRecording/inception_5_06.md","ref":"docs/meettingRecording/inception_5_06.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/meettingRecording/inception_5_27.md","mtime":"2019-06-12T12:27:50.396Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-19T05:02:08.865Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"后端接口设计","level":"1.10.2.2","depth":3,"next":{"title":"生产规范与指南","level":"1.11","depth":1,"ref":"","articles":[{"title":"JavaScript 代码规范","level":"1.11.1","depth":2,"path":"docs/productionSpecification/jsCodeStyle.md","ref":"docs/productionSpecification/jsCodeStyle.md","articles":[]},{"title":"Python 代码规范","level":"1.11.2","depth":2,"path":"docs/productionSpecification/pyCodeStyle.md","ref":"docs/productionSpecification/pyCodeStyle.md","articles":[]},{"title":"RESTful API 设计规范","level":"1.11.3","depth":2,"path":"docs/productionSpecification/restfulAPIDesign.md","ref":"docs/productionSpecification/restfulAPIDesign.md","articles":[]}]},"previous":{"title":"服务端接口设计","level":"1.10.2.1","depth":3,"path":"docs/design/serverendAPI.md","ref":"docs/design/serverendAPI.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/design/backendAPI.md","mtime":"2019-06-19T05:00:34.760Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-19T05:02:08.865Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
