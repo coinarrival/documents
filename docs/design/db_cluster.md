@@ -3,6 +3,7 @@
 |版本|日期|描述|作者|
 |:-:|:-:|:-:|:-:|
 |v0.1|2019年6月12日|初稿|快乐舔狗|
+|v0.2|2019年6月18日|增加容量|快乐舔狗|
 
 # 依赖工具
 
@@ -28,6 +29,13 @@
 
 # 设计
 
+传统 NDB 集群框架
+
+![mysql_cluster](../../assets/design/mysql_cluster.png)
+
+本项目 Docker-Mysql-Cluster 框架
+
+![mysql_cluster](../../assets/design/docker_mysql_cluster.png)
 
 # 使用
 
@@ -37,10 +45,28 @@
 $ docker network ls
 ```
 
-运行容器时，可以使用 --network 标志来指定容器应连接的网络。
+启动容器时，可以使用 --network 标志来指定容器应连接的网络。
 
 ```bash
 $ docker run --network=<NETWORK>
+```
+
+运行容器（dockermysql为容器的名字，bash为容器内名字）
+
+```bash
+$ docker exec -it dockermysql bash
+```
+
+查看正在运行的容器
+
+```bash
+$ docker ps
+```
+
+查看所有的容器
+
+```bash
+$ docker ps -a
 ```
 
 安装 mysql-cluster 镜像
@@ -71,7 +97,7 @@ $ docker run -d --net=cluster --name=ndb2 --ip=192.168.0.4 mysql/mysql-cluster n
 再启动 MySQL server node
 
 ```bash
-$ docker run -d --net=cluster --name=mysql1 --ip=192.168.0.10 -e MYSQL_RANDOM_ROOT_PASSWORD=true mysql/mysql-cluster mysqld
+$ docker run -d -p 23333:3306 --net=cluster --name=mysql1 --ip=192.168.0.10 -e MYSQL_RANDOM_ROOT_PASSWORD=true mysql/mysql-cluster mysqld
 ```
 
 得到 MySQL 密码
@@ -79,6 +105,7 @@ $ docker run -d --net=cluster --name=mysql1 --ip=192.168.0.10 -e MYSQL_RANDOM_RO
 ```bash
 $ docker logs mysql1 2>&1 | grep PASSWORD
 $ docker exec -it mysql1 mysql -uroot -p
+Enter password: or7ah0H9evimWOJeNxoHOs3n[@t
 ```
 
 利用 management node 来管理 cluster
@@ -92,7 +119,13 @@ ndb_mgm> show
 
 ```bash
 $ docker exec -it mysql1 mysql -uroot -p
+
+mysql> create database nexus; use nexus;
+
+mysql> create table replicant ... engine=NDBCLUSTER;
 ```
+
+注意：创建表的时候必须选择表的引擎为NDBCLUSTER，否则表不会进行同步
 
 # 参考
 
@@ -105,3 +138,5 @@ $ docker exec -it mysql1 mysql -uroot -p
 4. [Docker：网络模式详解](https://www.cnblogs.com/zuxing/articles/8780661.html)
 
 5. [MySQL Cluster Docker Image Reference](https://hub.docker.com/r/mysql/mysql-cluster/)
+
+6. [Docker部署MySQL并远程连接](https://blog.csdn.net/weixin_42459563/article/details/80924634)
