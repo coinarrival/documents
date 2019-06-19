@@ -3,6 +3,7 @@
 |版本|日期|描述|作者|
 |:-:|:-:|:-:|:-:|
 |v0.1|2019年6月12日|初稿|快乐舔狗|
+|v0.2|2019年6月18日|增加容量|快乐舔狗|
 
 # 依赖工具
 
@@ -28,10 +29,13 @@
 
 # 设计
 
-NDB集群的框架
+传统 NDB 集群框架
 
 ![mysql_cluster](../../assets/design/mysql_cluster.png)
 
+本项目 Docker-Mysql-Cluster 框架
+
+![mysql_cluster](../../assets/design/docker_mysql_cluster.png)
 
 # 使用
 
