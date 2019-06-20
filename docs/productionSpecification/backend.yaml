@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: CoinArrival-Backend
-  description: Backend API conrtains of CoinArrival.
+  description: Backend API constrains of CoinArrival.
   version: 0.2.0
 servers:
   - url: 'http://localhost:8000'
@@ -70,7 +70,7 @@ paths:
                     type: object
                     description: Queryed user info. Only available when status_code is 200.
                     properties:
-                      userid:
+                      userID:
                         type: string
                       username:
                         type: string
@@ -104,7 +104,7 @@ paths:
             SuccessfulltQueryed_Teacher:
               status_code: 200
               data:
-                userid: '123'
+                userID: '123'
                 username: example
                 gender: 'male'
                 email: example@example.com
@@ -119,7 +119,7 @@ paths:
             SuccessfulltQueryed_Student:
               status_code: 200
               data:
-                userid: '123'
+                userID: '123'
                 username: example
                 gender: 'male'
                 email: example@example.com
@@ -169,7 +169,7 @@ paths:
                   description: Only available when role is student
                 teacherID:
                   type: string
-                  description: Only available when role is treacher
+                  description: Only available when role is teacher
                 avatar:
                   type: string
       responses:
@@ -182,7 +182,7 @@ paths:
                 properties:
                   status_code:
                     type: integer
-                    description: 'An integer code indicating the response status. 201 for Successfully updated, 404 for no such username, 400 for necessary field not filled or invalid format, 409 for confict field.'
+                    description: 'An integer code indicating the response status. 201 for Successfully updated, 404 for no such username, 400 for necessary field not filled or invalid format, 409 for conflict field.'
                   data:
                     type: object
                     properties:
@@ -433,7 +433,7 @@ paths:
           description: "Backend error."
   /tasks: # GET for query one page of task
     get:
-      summary: Get a page of avaiable tasks
+      summary: Get a page of available tasks
       description: Get a page of available tasks. Page number could be given in the parameter. Only uncompleted tasks will be returned.
       parameters:
         - in: query
@@ -608,7 +608,7 @@ paths:
           description: Backend error.
     post:
       summary: Accept a new task.
-      description: "Try to accept a new task. One **cannot** accept a same task for mupltiple times."
+      description: "Try to accept a new task. One **cannot** accept a same task for multiple times."
       requestBody:
         content:
           application/json:
@@ -638,7 +638,7 @@ paths:
               status_code: 400
             NoSuchEntity:
               status_code: 404
-            MupltipleAccptance:
+            MultipleAcceptance:
               status_code: 409
         '500':
           description: Backend error.
