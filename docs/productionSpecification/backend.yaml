@@ -257,7 +257,7 @@ paths:
     get:
       summary: Query wallet balance of given user 
       description: Query the wallet balance of given user.
-      parameter:
+      parameters:
         - in: query
           name: username
           schema:
