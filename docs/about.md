@@ -5,6 +5,7 @@
 |版本|日期|描述|作者|
 |-|-|-|-|
 |v0.1|2019年5月7日|初稿|Hairi|
+|v0.2|2019年5月7日|完善重要分析文档目录|BroInBro|
 
 ## 项目简介
 
@@ -12,7 +13,10 @@
 
 ## 重要分析设计文档
 
-你来到了文档的荒原
+- [产品调研文档](investigation.md)
+- [需求规格说明书](requirementSpecification.md)
+- [产品特性](productBacklog.md)
+- [软件设计说明书](softwaredesign.md)
 
 ## 敏捷开发迭代管理与大事纪
 
