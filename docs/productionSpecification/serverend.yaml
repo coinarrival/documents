@@ -79,21 +79,65 @@ paths:
                     type: object
                     description: A JSON object containing queryed info. Only avaliable when status_code is 200.
                     properties:
+                      userid:
+                        type: string
                       username:
+                        type: string
+                      gender:
                         type: string
                       email:
                         type: string
                       phone:
                         type: string
+                      school:
+                        type: string
+                      major:
+                        type: string
+                      age:
+                        type: integer
+                      role:
+                        type: string
+                        enum: ['teacher', 'student']
+                      studentID:
+                        type: string
+                        description: Only available when role is student
+                      grade:
+                        type: string
+                        description: Only available when role is student
+                      teacherID:
+                        type: string
+                        description: Only available when role is teacher
                       avatar:
                         type: string
           examples:
-            SuccessfulltQueryed:
+            SuccessfulltQueryed_Teacher:
               status_code: 200
               data:
+                userid: '123'
                 username: example
+                gender: 'male'
                 email: example@example.com
                 phone: 12345678901
+                school: 'SYSU'
+                major: 'SE'
+                age: 18
+                role: 'student'
+                studentID: '16340299'
+                grade: '2016'
+                avatar: EXAMPLE.PNG
+            SuccessfulltQueryed_Student:
+              status_code: 200
+              data:
+                userid: '123'
+                username: example
+                gender: 'male'
+                email: example@example.com
+                phone: 12345678901
+                school: 'SYSU'
+                major: 'SE'
+                age: 34
+                role: 'teacher'
+                teacherID: '151273'
                 avatar: EXAMPLE.PNG
             FieldNotFilled:
               status_code: 400
@@ -116,10 +160,27 @@ paths:
                   required: true
                 password:
                   type: string
+                gender:
+                  type: string
                 email:
                   type: string
                 phone:
                   type: string
+                school:
+                  type: string
+                major:
+                  type: string
+                age:
+                  type: integer
+                studentID:
+                  type: string
+                  description: Only available when role is student
+                grade:
+                  type: string
+                  description: Only available when role is student
+                teacherID:
+                  type: string
+                  description: Only available when role is treacher
                 avatar:
                   type: string
       responses:
@@ -216,6 +277,10 @@ paths:
                   required: true
                 phone:
                   type: string
+                  required: true
+                role:
+                  type: string
+                  enum: ["teacher", "student"]
                   required: true
       responses:
         '200':

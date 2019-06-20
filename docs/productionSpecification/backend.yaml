@@ -290,7 +290,7 @@ paths:
               status_code: 404
             NotFilledField:
               status_code: 400
-  /task: # GET for query one task, POST for create one task
+  /task: # GET for query one task, POST for create one task, DELETE for complete an uncompleted task
     get:
       summary: Query one task
       description: Use taskID to query a task
@@ -395,6 +395,42 @@ paths:
               status_code: 403
         '500':
           description: Backend error.
+    delete:
+      summary: Complete an uncompleted task
+      description: Complete an uncompleted task. After doing so, no more acceptance record can be finished. Unused fund will be returned to the balance of the issuer.
+      parameters:
+        - in: query
+          name: username
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: taskID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    description: "An integer code indicating the response status. 200 for completed successfully, 404 for no such task or task has been completed, 400 for necessary field not filled or invalid format, 401 for the task is not issued by the given user."
+          examples:
+            SuccessfullyCompleted:
+              status_code: 200
+            NoSuchTask:
+              status_code: 404
+            FieldNotFilled:
+              status_code: 400
+            Unauthorized:
+              status_code: 401
+        '500':
+          description: "Backend error."
   /tasks: # GET for query one page of task
     get:
       summary: Get a page of avaiable tasks
@@ -405,6 +441,20 @@ paths:
           description: 'Which page of data do you require?'
           schema:
             type: integer
+          required: true
+        - in: query
+          name: type
+          description: 'Optional parameter, used to query tasks of specific type.'
+          schema:
+            type: string
+        - in: query
+          name: issuer
+          description: 'Optional parameter, used to query tasks issued by specific user.'
+          schema:
+            type: string
+        - in: query
+          name: content
+          description: 'Optional parameter, used to query tasks containing the given key word in its content.'
       responses:
         '200': 
           description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
@@ -464,8 +514,6 @@ paths:
                 max_pages: 15
             FieldNotFilled:
               status_code: 400
-              data:
-                max_pages: 15
             OutOfRange:
               status_code: 416
               data:
@@ -474,8 +522,8 @@ paths:
           description: Backend error.
   /accepted_tasks: # GET for query accepted tasks
     get:
-      summary: Query a page of accpted tasks of given user
-      description: Query a page of accpted tasks of given user. One can specify the page number to show a specific range of tasks. It should be indicated that whether the task has been finished by the user in the data field of returned JSON object.
+      summary: Query a page of accepted tasks of given user
+      description: Query a page of accepted tasks of given user. One can specify the page number to show a specific range of tasks. It should be indicated that whether the task has been finished by the user in the data field of returned JSON object.
       parameters:
         - in: query
           name: page
@@ -680,6 +728,73 @@ paths:
                 max_pages: 15
         '500':
           description: Backend error.
+  /acceptance: # GET for query acceptance record of a task, POST for finish one record.
+    get:
+      summary: Query a page of acceptance record of a specific task.
+      description: Query a page of acceptance record of a specific task created by the given user.
+      parameters:
+        - in: query
+          name: issuer
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: taskID
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: page
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code: 
+                    type: integer
+                    description: "An integer code indicating the response status. 200 for Successfully queryed, 400 for necessary field not filled or invalid format, 404 for no such username or task, 416 for parameter out of range."
+                  data:
+                    type: object
+                    properties:
+                      records:
+                        type: array
+                        description: "Array of records, only available when status_code is 200."
+                        items:
+                          type: object
+                          properties:
+                            userID:
+                              type: string
+                            isFinished:
+                              type: boolean
+                      max_pages:
+                        type: integer
+                        description: "Maximal number of pages."
+          examples:
+            SuccessfullyQueryed:
+              status_code: 200
+              data:
+                records:
+                  - userID: '123'
+                    isFinished: false
+                  - userID: '124'
+                    isFinished: true
+                max_pages: 15
+            FieldNotFilled:
+              status_code: 400
+            UserNotFound:
+              status_code: 404
+            OutOfRange:
+              status_code: 416
+              data:
+                max_pages: 15
+        '500':
+          description: Backend error.
     post:
       summary: Finish one created task for a specific user.
       description: Finish one created task for a specific user by giving the userID, taskID and the username of issuer. This API can only be called by the issuer of the task.
@@ -708,7 +823,7 @@ paths:
                 properties:
                   status_code:
                     type: integer
-                    description: 'An integer code indicating the response status. 200 for Successfully finished, 400 for necessary field not filled or invalid format, 404 for no such userID, username or taskID, 401 for not authorized.'
+                    description: 'An integer code indicating the response status. 200 for Successfully finished, 400 for necessary field not filled or invalid format, 404 for no such userID, username or taskID, 401 for not authorized, 416 for trying to finish completed task'
           examples:
             SuccessfullyAccept:
               status_code: 201
@@ -716,9 +831,43 @@ paths:
               status_code: 400
             NoSuchEntity:
               status_code: 404
-            MupltipleAccptance:
+            MultipleAcceptance:
               status_code: 401
+            CompletedTask:
+              status_code: 416
         '500':
           description: Backend error.
-          
-      
+    delete:
+      summary: "One can delete its acceptance record."
+      description: "One can delete its acceptance record **before finishing it**."
+      parameters:
+        - in: query
+          name: username
+          schema:
+            type: string
+        - in: query
+          name: taskID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    description: 'An integer code indicating the response status. 200 for deleted successfully, 404 for no such task, 400 for necessary field not filled or invalid format, 403 for task has been finished.'
+          examples:
+            SuccessfullyDeleted:
+              status_code: 200
+            NoSuchTask:
+              status_code: 404
+            FieldNotFilled:
+              status_code: 400
+            TaskBeenFinished:
+              status_code: 403
+        '500':
+          description: "Backend error."
