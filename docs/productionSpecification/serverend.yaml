@@ -811,7 +811,7 @@ paths:
                 max_pages: 15
             FieldNotFilled:
               status_code: 400
-            UserNotFound:
+            EntityNotFound:
               status_code: 404
             Unauthorized:
               status_code: 401
