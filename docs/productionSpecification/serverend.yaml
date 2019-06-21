@@ -361,6 +361,8 @@ paths:
                   data:
                     type: object
                     properties:
+                      title:
+                        type: string
                       content:
                         type: string
                       type:
@@ -379,6 +381,7 @@ paths:
             SuccessfullyQueryed:
               status_code: 200
               data:
+                title: EXAMPLE
                 content: EXAMPLE
                 type: EXAMPLE
                 issuer: EXAMPLE
@@ -402,6 +405,8 @@ paths:
             schema:
               type: object
               properties:
+                title:
+                  type: string
                 content:
                   type: string
                 type:
@@ -482,6 +487,11 @@ paths:
           schema:
             type: integer
           required: true
+        - in: query
+          name: title
+          description: 'Optional parameter, used to query tasks whose title contining the given keyword.'
+          schema:
+            type: string
         - in: query
           name: type
           description: 'Optional parameter, used to query tasks of specific type.'
@@ -597,6 +607,8 @@ paths:
                         items:
                           type: object
                           properties:
+                            title:
+                              type: string
                             taskID:
                               type: string
                             content:
@@ -620,6 +632,7 @@ paths:
               data:
                 tasks:
                   - taskID: '123'
+                    title: EXAMPLE
                     content: EXAMPLE
                     type: EXAMPLE
                     issuer: EXAMPLE
@@ -627,6 +640,7 @@ paths:
                     deadline: YYYY-MM-DD
                     isFinished: false
                   - taskID: '124'
+                    title: EXAMPLE
                     content: EXAMPLE
                     type: EXAMPLE
                     issuer: EXAMPLE
@@ -712,6 +726,8 @@ paths:
                           properties:
                             taskID:
                               type: string
+                            title:
+                              type: string
                             content:
                               type: string
                             type:
@@ -733,6 +749,7 @@ paths:
               data:
                 tasks:
                   - taskID: '123'
+                    title: EXAMPLE
                     content: EXAMPLE
                     type: EXAMPLE
                     issuer: EXAMPLE
@@ -740,6 +757,7 @@ paths:
                     deadline: YYYY-MM-DD
                     isCompleted: false
                   - taskID: '124'
+                    title: EXAMPLE
                     content: EXAMPLE
                     type: EXAMPLE
                     issuer: EXAMPLE
