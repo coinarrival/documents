@@ -633,7 +633,7 @@ paths:
           description: Backend error.
     post:
       summary: Accept a new task.
-      description: "Try to accept a new task. One **cannot** accept a same task for multiple times."
+      description: "Try to accept a new task. One **cannot** accept a same task for multiple times. **If the field answer is not undefined, this operation should be regarded as answering a suvery, and the user should be paid right after this operation. This kind of acceptances do not need to be finished by the issuer.**"
       requestBody:
         content:
           application/json:
@@ -643,8 +643,13 @@ paths:
               properties:
                 username:
                   type: string
+                  description: 'Required parameter, used to identify the user trying to accept this task.'
                 taskID:
                   type: string
+                  description: 'Required parameter, used to identify the accepted task.'
+                answer:
+                  type: string
+                  description: 'Optional parameter, only used to contain the answer to surveys'
       responses:
         '200': 
           description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
