@@ -403,21 +403,21 @@ paths:
               status_code: 403
         '500':
           description: Backend error.
-    delete:
+  /task_removed:
+    post:
       summary: Complete an uncompleted task
       description: Complete an uncompleted task. After doing so, no more acceptance record can be finished. Unused fund will be returned to the balance of the issuer.
-      parameters:
-        - in: query
-          name: issuer
-          required: true
-          description: username of issuer
-          schema:
-            type: string
-        - in: query
-          name: taskID
-          required: true
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                issuer:
+                  type: string
+                  description: username of issuer
+                taskID:
+                  type: string
       responses:
         '200':
           description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
@@ -759,6 +759,43 @@ paths:
                 max_pages: 15
         '500':
           description: Backend error.
+    post:
+      summary: Update a task
+      description: Update a task with given info.
+      requestBody:
+        description: A JSON object containing all needed info to create a task.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                reward:
+                  type: number
+                deadline:
+                  type: string
+                issuer:
+                  type: string
+                  description: username of issuer
+      responses:
+        '200':
+          description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    description: 'An integer code indicating the response status. 201 for Successfully updated, 400 for no field is filled or invalid format.'
+          examples:
+            SuccessfullyUpdated:
+              status_code: 200
+            NoFieldFilled:
+              status_code: 400
+        '500':
+          description: Backend error.
   /acceptance: # GET for querying one page of acceptance record of a task, POST for finishing one record, DELETE for canceling an acceptance.
     get:
       summary: Query a page of acceptance record of a specific task.
@@ -869,18 +906,20 @@ paths:
               status_code: 416
         '500':
           description: Backend error.
-    delete:
+  /acceptance_removed:
+    post:
       summary: "One can delete its acceptance record."
       description: "One can delete its acceptance record **before finishing it**."
-      parameters:
-        - in: query
-          name: username
-          schema:
-            type: string
-        - in: query
-          name: taskID
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                taskID:
+                  type: string
+                username:
+                  type: string
       responses:
         '200':
           description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
