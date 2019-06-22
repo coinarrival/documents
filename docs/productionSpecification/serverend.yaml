@@ -651,7 +651,7 @@ paths:
             FieldNotFilled:
               status_code: 400
             NoLogin:
-              status_code: 404
+              status_code: 401
             OutOfRange:
               status_code: 416
               data:
