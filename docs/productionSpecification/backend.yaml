@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: CoinArrival-Backend
-  description: Backend API conrtains of CoinArrival.
+  description: Backend API constrains of CoinArrival.
   version: 0.2.0
 servers:
   - url: 'http://localhost:8000'
@@ -70,7 +70,7 @@ paths:
                     type: object
                     description: Queryed user info. Only available when status_code is 200.
                     properties:
-                      userid:
+                      userID:
                         type: string
                       username:
                         type: string
@@ -104,7 +104,7 @@ paths:
             SuccessfulltQueryed_Teacher:
               status_code: 200
               data:
-                userid: '123'
+                userID: '123'
                 username: example
                 gender: 'male'
                 email: example@example.com
@@ -119,7 +119,7 @@ paths:
             SuccessfulltQueryed_Student:
               status_code: 200
               data:
-                userid: '123'
+                userID: '123'
                 username: example
                 gender: 'male'
                 email: example@example.com
@@ -169,7 +169,7 @@ paths:
                   description: Only available when role is student
                 teacherID:
                   type: string
-                  description: Only available when role is treacher
+                  description: Only available when role is teacher
                 avatar:
                   type: string
       responses:
@@ -182,7 +182,7 @@ paths:
                 properties:
                   status_code:
                     type: integer
-                    description: 'An integer code indicating the response status. 201 for Successfully updated, 404 for no such username, 400 for necessary field not filled or invalid format, 409 for confict field.'
+                    description: 'An integer code indicating the response status. 201 for Successfully updated, 404 for no such username, 400 for necessary field not filled or invalid format, 409 for conflict field.'
                   data:
                     type: object
                     properties:
@@ -253,11 +253,11 @@ paths:
                 which: email
         '500':
           description: Backend error.
-  /balance:
+  /balance: # GET for getting the balance
     get:
       summary: Query wallet balance of given user 
       description: Query the wallet balance of given user.
-      parameter:
+      parameters:
         - in: query
           name: username
           schema:
@@ -288,9 +288,11 @@ paths:
                 balance: 114192.2
             NoSuchUser:
               status_code: 404
-            NotFilledField:
+            FieldNotFilled:
               status_code: 400
-  /task: # GET for query one task, POST for create one task
+        '500':
+          description: 'Backend error.'
+  /task: # GET for query one task, POST for create one task, DELETE for manually complete an uncompleted task.
     get:
       summary: Query one task
       description: Use taskID to query a task
@@ -314,6 +316,8 @@ paths:
                   data:
                     type: object
                     properties:
+                      title:
+                        type: string
                       content:
                         type: string
                       type:
@@ -332,6 +336,7 @@ paths:
             SuccessfullyQueryed:
               status_code: 200
               data:
+                title: EXAMPLE
                 content: EXAMPLE
                 type: EXAMPLE
                 issuer: EXAMPLE
@@ -355,12 +360,15 @@ paths:
             schema:
               type: object
               properties:
+                title:
+                  type: string
                 content:
                   type: string
                 type:
                   type: string
                 issuer:
                   type: string
+                  description: username of issuer
                 reward:
                   type: number
                 repeatTime:
@@ -395,16 +403,79 @@ paths:
               status_code: 403
         '500':
           description: Backend error.
+  /task_removed:
+    post:
+      summary: Complete an uncompleted task
+      description: Complete an uncompleted task. After doing so, no more acceptance record can be finished. Unused fund will be returned to the balance of the issuer.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                issuer:
+                  type: string
+                  description: username of issuer
+                taskID:
+                  type: string
+      responses:
+        '200':
+          description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    description: "An integer code indicating the response status. 200 for completed successfully, 404 for no such task or task has been completed, 400 for necessary field not filled or invalid format, 401 for the task is not issued by the given user."
+          examples:
+            SuccessfullyCompleted:
+              status_code: 200
+            NoSuchTask:
+              status_code: 404
+            FieldNotFilled:
+              status_code: 400
+            Unauthorized:
+              status_code: 401
+        '500':
+          description: "Backend error."
   /tasks: # GET for query one page of task
     get:
-      summary: Get a page of avaiable tasks
-      description: Get a page of available tasks. Page number could be given in the parameter. Only uncompleted tasks will be returned.
+      summary: Get a page of available tasks
+      description: Get a page of available tasks. Page number could be given in the parameter. Completed tasks can only be returned when isComplete is set to be true.
       parameters:
         - in: query
           name: page
           description: 'Which page of data do you require?'
           schema:
             type: integer
+          required: true
+        - in: query
+          name: title
+          description: 'Optional parameter, used to query tasks whose title containing the given keyword.'
+          schema:
+            type: string
+        - in: query
+          name: type
+          description: 'Optional parameter, used to query tasks of specific type.'
+          schema:
+            type: string
+        - in: query
+          name: issuer
+          description: 'Optional parameter, used to query tasks issued by specific user.'
+          schema:
+            type: string
+        - in: query
+          name: content
+          description: 'Optional parameter, used to query tasks containing the given key word in its content.'
+          schema:
+            type: string
+        - in: query
+          name: isComplete
+          description: 'Optional parameter, completed tasks are visible only if this parameter is set to be true.'
+          schema:
+            type: boolean
       responses:
         '200': 
           description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
@@ -427,6 +498,8 @@ paths:
                           properties:
                             taskID:
                               type: string
+                            title:
+                              type: string
                             content:
                               type: string
                             type:
@@ -448,6 +521,7 @@ paths:
               data:
                 tasks:
                   - taskID: '123'
+                    title: EXAMPLE
                     content: EXAMPLE
                     type: EXAMPLE
                     issuer: EXAMPLE
@@ -455,6 +529,7 @@ paths:
                     deadline: YYYY-MM-DD
                     repeatTime: 15
                   - taskID: '124'
+                    title: EXAMPLE
                     content: EXAMPLE
                     type: EXAMPLE
                     issuer: EXAMPLE
@@ -464,18 +539,16 @@ paths:
                 max_pages: 15
             FieldNotFilled:
               status_code: 400
-              data:
-                max_pages: 15
             OutOfRange:
               status_code: 416
               data:
                 max_pages: 15
         '500':
           description: Backend error.
-  /accepted_tasks: # GET for query accepted tasks
+  /accepted_tasks: # GET for one page of query accepted tasks, POST for accept a new task
     get:
-      summary: Query a page of accpted tasks of given user
-      description: Query a page of accpted tasks of given user. One can specify the page number to show a specific range of tasks. It should be indicated that whether the task has been finished by the user in the data field of returned JSON object.
+      summary: Query a page of accepted tasks of given user
+      description: Query a page of accepted tasks of given user. One can specify the page number to show a specific range of tasks. It should be indicated that whether the task has been finished by the user in the data field of returned JSON object.
       parameters:
         - in: query
           name: page
@@ -486,7 +559,7 @@ paths:
           name: username
           required: true
           schema:
-            type: username
+            type: string
       responses:
         '200':
           description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
@@ -508,6 +581,8 @@ paths:
                           type: object
                           properties:
                             taskID:
+                              type: string
+                            title:
                               type: string
                             content:
                               type: string
@@ -530,6 +605,7 @@ paths:
               data:
                 tasks:
                   - taskID: '123'
+                    title: EXAMPLE
                     content: EXAMPLE
                     type: EXAMPLE
                     issuer: EXAMPLE
@@ -537,6 +613,7 @@ paths:
                     deadline: YYYY-MM-DD
                     isFinished: false
                   - taskID: '124'
+                    title: EXAMPLE
                     content: EXAMPLE
                     type: EXAMPLE
                     issuer: EXAMPLE
@@ -546,12 +623,8 @@ paths:
                 max_pages: 15
             FieldNotFilled:
               status_code: 400
-              data:
-                max_pages: 15
             UserNotFound:
               status_code: 404
-              data:
-                max_pages: 15
             OutOfRange:
               status_code: 416
               data:
@@ -560,7 +633,7 @@ paths:
           description: Backend error.
     post:
       summary: Accept a new task.
-      description: "Try to accept a new task. One **cannot** accept a same task for mupltiple times."
+      description: "Try to accept a new task. One **cannot** accept a same task for multiple times. **If the field answer is not undefined, this operation should be regarded as answering a suvery, and the user should be paid right after this operation. This kind of acceptances do not need to be finished by the issuer.**"
       requestBody:
         content:
           application/json:
@@ -570,8 +643,13 @@ paths:
               properties:
                 username:
                   type: string
+                  description: 'Required parameter, used to identify the user trying to accept this task.'
                 taskID:
                   type: string
+                  description: 'Required parameter, used to identify the accepted task.'
+                answer:
+                  type: string
+                  description: 'Optional parameter, only used to contain the answer to surveys'
       responses:
         '200': 
           description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
@@ -590,11 +668,11 @@ paths:
               status_code: 400
             NoSuchEntity:
               status_code: 404
-            MupltipleAccptance:
+            MultipleAcceptance:
               status_code: 409
         '500':
           description: Backend error.
-  /created_tasks: # GET for query created tasks
+  /created_tasks: # GET for one page of query created tasks
     get:
       summary: Query a page of created tasks of given user
       description: Query a page of created tasks of given user. One can specify the page number to show a specific range of tasks. It should be indicated that whether the task has been completed in the data field of returned JSON object.
@@ -605,10 +683,11 @@ paths:
           schema:
             type: integer
         - in: query
-          name: username
+          name: issuer
           required: true
+          description: username of issuer
           schema:
-            type: username
+            type: string
       responses:
         '200':
           description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
@@ -631,6 +710,8 @@ paths:
                           properties:
                             taskID:
                               type: string
+                            title:
+                              type: string
                             content:
                               type: string
                             type:
@@ -652,6 +733,7 @@ paths:
               data:
                 tasks:
                   - taskID: '123'
+                    title: EXAMPLE
                     content: EXAMPLE
                     type: EXAMPLE
                     issuer: EXAMPLE
@@ -659,6 +741,7 @@ paths:
                     deadline: YYYY-MM-DD
                     isCompleted: false
                   - taskID: '124'
+                    title: EXAMPLE
                     content: EXAMPLE
                     type: EXAMPLE
                     issuer: EXAMPLE
@@ -668,12 +751,113 @@ paths:
                 max_pages: 15
             FieldNotFilled:
               status_code: 400
-              data:
-                max_pages: 15
             UserNotFound:
               status_code: 404
+            OutOfRange:
+              status_code: 416
               data:
                 max_pages: 15
+        '500':
+          description: Backend error.
+    post:
+      summary: Update a task
+      description: Update a task with given info.
+      requestBody:
+        description: A JSON object containing all needed info to create a task.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                reward:
+                  type: number
+                deadline:
+                  type: string
+                issuer:
+                  type: string
+                  description: username of issuer
+      responses:
+        '200':
+          description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    description: 'An integer code indicating the response status. 201 for Successfully updated, 400 for no field is filled or invalid format.'
+          examples:
+            SuccessfullyUpdated:
+              status_code: 200
+            NoFieldFilled:
+              status_code: 400
+        '500':
+          description: Backend error.
+  /acceptance: # GET for querying one page of acceptance record of a task, POST for finishing one record, DELETE for canceling an acceptance.
+    get:
+      summary: Query a page of acceptance record of a specific task.
+      description: Query a page of acceptance record of a specific task created by the given user.
+      parameters:
+        - in: query
+          name: issuer
+          required: true
+          description: username of issuer
+          schema:
+            type: string
+        - in: query
+          name: taskID
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: page
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code: 
+                    type: integer
+                    description: "An integer code indicating the response status. 200 for Successfully queryed, 400 for necessary field not filled or invalid format, 404 for no such username or task, 416 for parameter out of range, 401 for unauthorized."
+                  data:
+                    type: object
+                    properties:
+                      records:
+                        type: array
+                        description: "Array of records, only available when status_code is 200."
+                        items:
+                          type: object
+                          properties:
+                            userID:
+                              type: string
+                            isFinished:
+                              type: boolean
+                      max_pages:
+                        type: integer
+                        description: "Maximal number of pages."
+          examples:
+            SuccessfullyQueryed:
+              status_code: 200
+              data:
+                records:
+                  - userID: '123'
+                    isFinished: false
+                  - userID: '124'
+                    isFinished: true
+                max_pages: 15
+            FieldNotFilled:
+              status_code: 400
+            EntityNotFound:
+              status_code: 404
             OutOfRange:
               status_code: 416
               data:
@@ -695,7 +879,7 @@ paths:
                 taskID:
                   type: string
                   description: TaskID of the task to be finished.
-                username:
+                issuer:
                   type: string
                   description: Username of the issuer of the task to be finished.
       responses:
@@ -708,17 +892,53 @@ paths:
                 properties:
                   status_code:
                     type: integer
-                    description: 'An integer code indicating the response status. 200 for Successfully finished, 400 for necessary field not filled or invalid format, 404 for no such userID, username or taskID, 401 for not authorized.'
+                    description: 'An integer code indicating the response status. 200 for Successfully finished, 400 for necessary field not filled or invalid format, 404 for no such userID, username or taskID, 401 for not authorized, 416 for trying to finish completed task'
           examples:
             SuccessfullyAccept:
-              status_code: 201
+              status_code: 200
             FieldNotFilled:
               status_code: 400
             NoSuchEntity:
               status_code: 404
-            MupltipleAccptance:
+            MultipleAcceptance:
               status_code: 401
+            CompletedTask:
+              status_code: 416
         '500':
           description: Backend error.
-          
-      
+  /acceptance_removed:
+    post:
+      summary: "One can delete its acceptance record."
+      description: "One can delete its acceptance record **before finishing it**."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                taskID:
+                  type: string
+                username:
+                  type: string
+      responses:
+        '200':
+          description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    description: 'An integer code indicating the response status. 200 for deleted successfully, 404 for no such task, 400 for necessary field not filled or invalid format, 403 for task has been finished.'
+          examples:
+            SuccessfullyDeleted:
+              status_code: 200
+            NoSuchTask:
+              status_code: 404
+            FieldNotFilled:
+              status_code: 400
+            TaskBeenFinished:
+              status_code: 403
+        '500':
+          description: "Backend error."
