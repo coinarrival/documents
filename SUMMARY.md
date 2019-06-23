@@ -2,7 +2,6 @@
 
 * [币达](README.md)
 * [About](docs/about.md)
-* [Installation](docs/installation.md)
 * [Manual](docs/manual.md)
 * [Team Profile](docs/teamProfile.md)
 * [Investigation](docs/investigation.md)
@@ -22,11 +21,14 @@
     * API Design
         * [服务端接口设计](docs/design/serverendAPI.md)
         * [后端接口设计](docs/design/backendAPI.md)
+    * [软件架构](docs/design/softwareStructure.md)
 * 生产规范与指南
     * [JavaScript 代码规范](docs/productionSpecification/jsCodeStyle.md)
     * [Python 代码规范](docs/productionSpecification/pyCodeStyle.md)
     * [RESTful API 设计规范](docs/productionSpecification/restfulAPIDesign.md)
+    * [部署文档](docs/productionSpecification/installation.md)
 * Meeting Recording
     * [Inception 19/5/6](docs/meettingRecording/inception_5_06.md)
     * [Inception 19/5/27](docs/meettingRecording/inception_5_27.md)
     * [Inception 19/6/16](docs/meettingRecording/inception_6_16.md)
+
