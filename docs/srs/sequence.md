@@ -27,8 +27,8 @@
 
 ## 充值币达币（16340122）
 
-![ssd_search](../../assets/design/SSD_add_task.png)
+![ssd_search](../../assets/design/SSD_top_up.png)
 
 ## 提现币达币（16340256）
 
-![ssd_search](../../assets/design/SSD_add_task.png)
+![ssd_search](../../assets/design/SSD_withdraw.png)
