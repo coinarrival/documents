@@ -1,8 +1,8 @@
-# Inception 19/5/6
+# Inception Meeting Record 
 
 ## Basic Information
 
-Date: 2019/5/6 19:00-20:30
+Date: 2019/5/28 19:00-20:30
 
 Participant: Hairi、快乐舔狗、BroInBro、张三丰、Cynthia、无情咸鱼
 

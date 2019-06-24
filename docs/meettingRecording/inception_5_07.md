@@ -2,7 +2,7 @@
 
 ## Basic Information
 
-Date: 2019/5/27 19:00-20:30
+Date: 2019/5/7 19:00-20:30
 
 Participant: Hairi、快乐舔狗、BroInBro、张三丰、Cynthia、无情咸鱼
 
@@ -22,4 +22,4 @@ Meeting Topic: 产品用例图及多泳道图的绘制
 
 ## 思维导图
 
-[![VylNCR.md.png](../../assets/design/meeting_5_27_mind_graph.png)](../../assets/design/meeting_5_27_mind_graph.png)
+[![VylNCR.md.png](../../assets/design/meeting_5_07_mind_graph.png)](../../assets/design/meeting_5_07_mind_graph.png)

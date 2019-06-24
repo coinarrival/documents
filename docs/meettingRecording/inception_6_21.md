@@ -2,7 +2,7 @@
 
 ## Basic Information
 
-Date: 2019/6/16 9:00-11:30
+Date: 2019/6/21 9:00-11:30
 
 Participant: Hairi、快乐舔狗、BroInBro、张三丰、Cynthia、无情咸鱼
 

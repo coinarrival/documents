@@ -28,7 +28,7 @@
     * [RESTful API 设计规范](docs/productionSpecification/restfulAPIDesign.md)
     * [部署文档](docs/productionSpecification/installation.md)
 * Meeting Recording
-    * [Inception 19/5/6](docs/meettingRecording/inception_5_06.md)
-    * [Inception 19/5/27](docs/meettingRecording/inception_5_27.md)
-    * [Inception 19/6/16](docs/meettingRecording/inception_6_16.md)
+    * [Inception 19/4/28](docs/meettingRecording/inception_4_28.md)
+    * [Inception 19/5/7](docs/meettingRecording/inception_5_07.md)
+    * [Inception 19/6/21](docs/meettingRecording/inception_6_21.md)
 
