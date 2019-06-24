@@ -225,6 +225,9 @@ paths:
                 phone:
                   type: string
                   required: true
+                role:
+                  type: string
+                  required: true
       responses:
         '200':
           description: "Network OK. A JSON object containing status \U0001F434 will be returned to requester."
@@ -869,6 +872,8 @@ paths:
               status_code: 400
             EntityNotFound:
               status_code: 404
+            Unauthorized:
+              status_code: 401
             OutOfRange:
               status_code: 416
               data:
