@@ -126,17 +126,3 @@ mysql> create table replicant ... engine=NDBCLUSTER;
 ```
 
 注意：创建表的时候必须选择表的引擎为NDBCLUSTER，否则表不会进行同步
-
-# 参考
-
-1. [Centos7上安装docker](https://www.cnblogs.com/yufeng218/p/8370670.html)
-
-2. [MySQL cluster in Docker (English)](https://mysqlmed.wordpress.com/2017/09/04/mysql-cluster-in-docker-quick-step-by-step/)
-
-3. [MySQL cluster in Docker (Chinese)](https://www.jianshu.com/p/cc837360c9e7)
-
-4. [Docker：网络模式详解](https://www.cnblogs.com/zuxing/articles/8780661.html)
-
-5. [MySQL Cluster Docker Image Reference](https://hub.docker.com/r/mysql/mysql-cluster/)
-
-6. [Docker部署MySQL并远程连接](https://blog.csdn.net/weixin_42459563/article/details/80924634)
