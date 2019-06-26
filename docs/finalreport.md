@@ -2,7 +2,7 @@
 
 [16340261-BroInBro](https://xwy27.github.io/Software-Analysis-and-Design/software-analysis-hw-final/)
 
-[16340258-Hairi ]()
+[16340258-Hairi ](https://siskonemilia.github.io/SSAD/16340258-Hairi-Final-Report/)
 
 [16340284-张三丰](https://blog.csdn.net/zhangshanfeng_/article/details/93652230)
 
