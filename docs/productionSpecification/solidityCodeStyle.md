@@ -142,3 +142,62 @@ contract A {
     // ...
 }
 ```
+
+ - 明确函数的可见性
+
+所有的函数（包括构造函数）应该在定义的时候明确函数的可见性，例如应该使用：
+
+```js
+function explicitlyPublic(uint val) public {
+    doSomething();
+}
+```
+
+ - 可见性应该在修饰符前面
+
+函数的可见性应该写在自定义的函数修饰符前面
+
+```js
+function kill() public onlyowner {
+    selfdestruct(owner);
+}
+```
+
+### 区分函数和事件
+
+为了防止函数和事件（Event）产生混淆，声明一个事件使用大写并加入前缀（可使用LOG）。对于函数， 始终以小写字母开头，构造函数除外。
+
+```js
+// bad
+event Transfer() {}
+function transfer() {}
+
+// good
+event LogTransfer() {}
+function transfer() external {}
+```
+
+### 换行
+
+ - 在使用 `if, else, while, for` 时
+
+```js
+if (...) {
+    ...
+}
+
+for (...) {
+    ...
+}
+```
+
+ - 左括号应该跟定义（合约定义、函数定义、库定义、结构体定义）放在一行
+
+```js
+contract Coin {
+    struct Bank {
+        address owner;
+        uint balance;
+    }
+}
+```
