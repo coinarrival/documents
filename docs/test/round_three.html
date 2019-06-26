@@ -720,6 +720,155 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="round-three">Round Three</h1>
+<h2 id="serverend--backend-api">ServerEnd &amp; BackEnd API</h2>
+<h3 id="&#x9636;&#x6BB5;&#x4E09;">&#x9636;&#x6BB5;&#x4E09;</h3>
+<ul>
+<li><p>GET &#x200B;/public&#x200B;/* Get public assests</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|:----:|
+|&#x6B63;&#x786E;&#x56FE;&#x7247;|Y|||
+|&#x4E0D;&#x5B58;&#x5728;&#x6587;&#x4EF6;|Y|||</p>
+</li>
+<li><p>POST &#x200B;/login Verify the username and password</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|:----:|
+|&#x4E0D;&#x5B8C;&#x6574;&#x4FE1;&#x606F;|Y|||
+|&#x4E0D;&#x5B58;&#x5728;&#x7528;&#x6237;&#x540D;|Y|||
+|&#x9519;&#x8BEF;&#x5BC6;&#x7801;|Y|||
+|&#x6B63;&#x5E38;&#x767B;&#x9646;|Y|||</p>
+</li>
+<li><p>GET &#x200B;/account_info Get user info</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|:----:|
+|&#x9519;&#x8BEF;&#x4FE1;&#x606F;|Y|||
+|&#x4E0D;&#x5B58;&#x5728;&#x7528;&#x6237;|Y|||
+|&#x5B66;&#x751F;&#x7528;&#x6237;|Y||
+|&#x6559;&#x5E08;&#x7528;&#x6237;|Y||</p>
+</li>
+<li><p>POST &#x200B;/account_info Update account info</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|:----:|
+|&#x6B63;&#x786E;&#x4FE1;&#x606F;|Y|||
+|&#x51B2;&#x7A81;&#x4FE1;&#x606F;|Y||</p>
+</li>
+</ul>
+<ul>
+<li><p>POST &#x200B;/avatar Upload avatar image</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|:----:|
+|&#x4E0A;&#x4F20;&#x5934;&#x50CF;|Y|||</p>
+</li>
+<li><p>POST &#x200B;/registration Create an account</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|:----:|
+|&#x4E0D;&#x5B8C;&#x6574;&#x4FE1;&#x606F;|Y|||
+|&#x6B63;&#x5E38;&#x4FE1;&#x606F;|Y|||
+|&#x91CD;&#x590D;&#x7528;&#x6237;&#x540D;|Y|||
+|&#x91CD;&#x590D;&#x90AE;&#x7BB1;|Y|||
+|&#x91CD;&#x590D;&#x7535;&#x8BDD;|Y|||</p>
+</li>
+<li><p>POST &#x200B;/task Create a task</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|:----:|
+|&#x6B63;&#x5E38;&#x53D1;&#x8D77;|Y|||
+|&#x4FE1;&#x606F;&#x4E0D;&#x8DB3;|Y|||</p>
+</li>
+<li><p>GET &#x200B;/public&#x200B;/* Get public assests</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|:----:|
+|&#x6B63;&#x786E;&#x56FE;&#x7247;|Y|||
+|&#x4E0D;&#x5B58;&#x5728;&#x6587;&#x4EF6;|Y|||</p>
+</li>
+<li><p>GET &#x200B;/balance Query wallet balance of current user</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|:----:|
+|&#x6B63;&#x5E38;&#x67E5;&#x8BE2;|Y|</p>
+</li>
+<li><p>GET &#x200B;/task Query one task</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|:----:|
+|&#x6B63;&#x786E;&#x4FE1;&#x606F;|Y|||
+|&#x4E0D;&#x5B58;&#x5728;&#x4EFB;&#x52A1;|Y|||
+|&#x4FE1;&#x606F;&#x4E0D;&#x8DB3;|Y|||</p>
+</li>
+</ul>
+<ul>
+<li><p>DELETE &#x200B;/task Complete an uncompleted task</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|:----:|
+|&#x6B63;&#x786E;&#x5220;&#x9664;|Y|||
+|&#x4E0D;&#x5B58;&#x5728;&#x4EFB;&#x52A1;|Y|||
+|&#x4E0D;&#x8DB3;&#x4FE1;&#x606F;|Y|||
+|&#x4E0D;&#x5C5E;&#x4E8E;&#x81EA;&#x5DF1;&#x7684;&#x4EFB;&#x52A1;|Y|||</p>
+</li>
+<li><p>GET &#x200B;/tasks Get a page of available tasks</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|----|
+|&#x4E0D;&#x8DB3;&#x4FE1;&#x606F;|Y|||
+|&#x6B63;&#x786E;&#x4FE1;&#x606F;|Y|||
+|&#x8D8A;&#x754C;&#x9875;&#x6570;|Y|||</p>
+</li>
+<li><p>GET &#x200B;/accepted_tasks Query a page of accepted tasks of current user</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|----|
+|&#x6B63;&#x5E38;&#x83B7;&#x53D6;|Y|||
+|&#x8D8A;&#x754C;&#x9875;&#x6570;|Y|||</p>
+</li>
+</ul>
+<ul>
+<li><p>POST &#x200B;/accepted_tasks Accept a new task.</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|----|
+|&#x6B63;&#x786E;&#x63A5;&#x53D7;|Y|||
+|&#x6B63;&#x786E;&#x5B8C;&#x6210;&#x95EE;&#x5377;|Y|||</p>
+</li>
+</ul>
+<ul>
+<li><p>GET &#x200B;/created_tasks Query a page of created tasks of current user</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|----|
+|&#x4E0D;&#x8DB3;&#x4FE1;&#x606F;|Y|||
+|&#x6B63;&#x786E;&#x4FE1;&#x606F;|Y|||
+|&#x8D8A;&#x754C;&#x9875;&#x6570;|Y|||</p>
+</li>
+<li><p>POST &#x200B;/created_tasks Update a task</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|----|
+|&#x6B63;&#x786E;&#x66F4;&#x65B0;|Y|||
+|&#x4E0D;&#x8DB3;&#x4FE1;&#x606F;|Y|||</p>
+</li>
+</ul>
+<ul>
+<li><p>GET &#x200B;/acceptance Query a page of acceptance record of a specific task.</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|----|
+|&#x4E0D;&#x8DB3;&#x4FE1;&#x606F;|Y|||
+|&#x6B63;&#x786E;&#x4FE1;&#x606F;|Y||
+|&#x4E0D;&#x5B58;&#x5728;&#x4EFB;&#x52A1;|Y|||
+|&#x4E0D;&#x8DB3;&#x4FE1;&#x606F;|Y|||</p>
+</li>
+</ul>
+<ul>
+<li><p>POST &#x200B;/acceptance Finish one created task for a specific user.</p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|----|
+|&#x4E0D;&#x8DB3;&#x4FE1;&#x606F;|Y|||
+|&#x6B63;&#x786E;&#x4FE1;&#x606F;|Y|||
+|&#x4E0D;&#x5B58;&#x5728;&#x4EFB;&#x52A1;|Y|||
+|&#x518D;&#x6B21;&#x5B8C;&#x6210;|Y|||
+|&#x4E0D;&#x5C5E;&#x4E8E;&#x81EA;&#x5DF1;&#x7684;&#x4EFB;&#x52A1;|Y|||</p>
+</li>
+</ul>
+<ul>
+<li><p>DELETE &#x200B;/acceptance One can delete its acceptance record. </p>
+<p>|Case|Pass|Error|Reason|
+|:--:|:--:|:---:|----|
+|&#x6B63;&#x786E;&#x4FE1;&#x606F;|Y|||
+|&#x4E0D;&#x5B58;&#x5728;&#x4EFB;&#x52A1;|Y|||
+|&#x5DF2;&#x5B8C;&#x6210;|Y|||
+|&#x4E0D;&#x5C5E;&#x4E8E;&#x81EA;&#x5DF1;&#x7684;&#x4EFB;&#x52A1;|Y|||</p>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -759,7 +908,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Round Three","level":"1.12.3","depth":2,"next":{"title":"Demo","level":"1.13","depth":1,"ref":"","articles":[{"title":"项目Demo","level":"1.13.1","depth":2,"path":"docs/demo/demo.md","ref":"docs/demo/demo.md","articles":[]}]},"previous":{"title":"Round Two","level":"1.12.2","depth":2,"path":"docs/test/round_two.md","ref":"docs/test/round_two.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/test/round_three.md","mtime":"2019-06-25T16:24:02.757Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-25T16:34:28.732Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Round Three","level":"1.12.3","depth":2,"next":{"title":"Demo","level":"1.13","depth":1,"ref":"","articles":[{"title":"项目Demo","level":"1.13.1","depth":2,"path":"docs/demo/demo.md","ref":"docs/demo/demo.md","articles":[]}]},"previous":{"title":"Round Two","level":"1.12.2","depth":2,"path":"docs/test/round_two.md","ref":"docs/test/round_two.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/test/round_three.md","mtime":"2019-06-26T02:11:43.082Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-26T05:10:49.626Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
