@@ -27,6 +27,7 @@
 * 生产规范与指南
     * [JavaScript 代码规范](docs/productionSpecification/jsCodeStyle.md)
     * [Python 代码规范](docs/productionSpecification/pyCodeStyle.md)
+    * [Solidity 代码规范](docs/productionSpecification/solidityCodeStyle.md)
     * [RESTful API 设计规范](docs/productionSpecification/restfulAPIDesign.md)
     * [安装部署说明](docs/productionSpecification/installation.md)
 * Meeting Recording
