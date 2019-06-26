@@ -8,14 +8,14 @@
 * [Vision](docs/vision.md)
 * [Product Backlog](docs/productBacklog.md)
 * Requirement Specification (软件需求规格说明书)
-    * [Overview](docs/requirementSpecification.md)
+    * [Overview](docs/srs/requirementSpecification.md)
     * [Usecase Diagram](docs/srs/usecase.md)
     * [Usecases And Activity Diagram](docs/srs/activity.md)
     * [Domain Model](docs/srs/domain.md)
     * [State Model](docs/srs/state.md)
     * [System Sequence Diagram](docs/srs/sequence.md)
 * Design (软件设计文档)
-    * [Overview](docs/softwaredesign.md)
+    * [Overview](docs/design/softwaredesign.md)
     * Database Design
         * [用户系统数据库设计](docs/design/userSystem.md)
         * [用户及权限系统数据库设计](docs/design/db_design.md)
@@ -33,4 +33,12 @@
     * [Inception 19/4/28](docs/meettingRecording/inception_4_28.md)
     * [Inception 19/5/7](docs/meettingRecording/inception_5_07.md)
     * [Inception 19/6/21](docs/meettingRecording/inception_6_21.md)
+* 测试报告
+    * [Round One](docs/test/round_one.md)
+    * [Round Two](docs/test/round_two.md)
+    * [Round Three](docs/test/round_three.md)
+* Demo
+    * [项目Demo](docs/demo/demo.md)
+* X Final Report
+    * [OverView](docs/finalreport.md)
 
