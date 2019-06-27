@@ -783,6 +783,12 @@
 <td>&#x8865;&#x5145;&#x540E;&#x7AEF;&#x90E8;&#x5206;</td>
 <td>&#x5F20;&#x4E09;&#x4E30;</td>
 </tr>
+<tr>
+<td>v0.5.1</td>
+<td>2019&#x5E74;6&#x6708;26&#x65E5;</td>
+<td>&#x8865;&#x5145;&#x8D27;&#x5E01;&#x7CFB;&#x7EDF;</td>
+<td>&#x5FEB;&#x4E50;&#x8214;&#x72D7;</td>
+</tr>
 </tbody>
 </table>
 <blockquote>
@@ -791,7 +797,7 @@
 <h1 id="&#x8F6F;&#x4EF6;&#x6574;&#x4F53;&#x67B6;&#x6784;">&#x8F6F;&#x4EF6;&#x6574;&#x4F53;&#x67B6;&#x6784;</h1>
 <p><img src="../../assets/design/softwareStructure.png" alt="SoftwareStructure"></p>
 <p>&#x524D;&#x7AEF;&#x3001;&#x670D;&#x52A1;&#x7AEF;&#x3001;&#x540E;&#x7AEF;&#x5206;&#x79BB;&#xFF0C;&#x524D;&#x7AEF;&#x548C;&#x670D;&#x52A1;&#x7AEF;&#xFF0C;&#x670D;&#x52A1;&#x7AEF;&#x548C;&#x540E;&#x7AEF;&#x4E4B;&#x95F4;&#x91C7;&#x7528;RESTful API &#x5B8C;&#x6210;&#x4EA4;&#x4E92;&#x3002;</p>
-<p>&#x5176;&#x4ED6;&#x8BE6;&#x89C1; <a href="https://github.com/coinarrival/documents/blob/master/docs/design/softwareStructure.md" target="_blank">&#x8F6F;&#x4EF6;&#x67B6;&#x6784;</a>&#xFF0C;<a href="https://github.com/coinarrival/documents/blob/master/docs/design/serverendAPI.md" target="_blank">&#x670D;&#x52A1;&#x7AEF;API&#x8BBE;&#x8BA1;</a>&#xFF0C;<a href="https://github.com/coinarrival/documents/blob/master/docs/design/backendAPI.md" target="_blank">&#x540E;&#x7AEF;API&#x8BBE;&#x8BA1;</a></p>
+<p>&#x5176;&#x4ED6;&#x8BE6;&#x89C1; <a href="softwareStructure.html">&#x8F6F;&#x4EF6;&#x67B6;&#x6784;</a>&#xFF0C;<a href="serverendAPI.html">&#x670D;&#x52A1;&#x7AEF;API&#x8BBE;&#x8BA1;</a>&#xFF0C;<a href="backendAPI.html">&#x540E;&#x7AEF;API&#x8BBE;&#x8BA1;</a>&#xFF0C;<a href="userSystem.html">&#x6570;&#x636E;&#x5E93;&#x8BBE;&#x8BA1;</a></p>
 <h1 id="&#x524D;&#x7AEF;">&#x524D;&#x7AEF;</h1>
 <h2 id="&#x6280;&#x672F;&#x9009;&#x578B;&#x53CA;&#x7406;&#x7531;">&#x6280;&#x672F;&#x9009;&#x578B;&#x53CA;&#x7406;&#x7531;</h2>
 <p>&#x524D;&#x7AEF;&#x6574;&#x4F53;&#x6280;&#x672F;&#x6808;&#x4E3A;&#xFF1A;
@@ -1122,7 +1128,7 @@ log4js.configure({
 <h1 id="&#x540E;&#x7AEF;">&#x540E;&#x7AEF;</h1>
 <h2 id="&#x6280;&#x672F;&#x9009;&#x578B;&#x53CA;&#x7406;&#x7531;">&#x6280;&#x672F;&#x9009;&#x578B;&#x53CA;&#x7406;&#x7531;</h2>
 <p>&#x540E;&#x7AEF;&#x6574;&#x4F53;&#x6280;&#x672F;&#x6808;&#x4E3A;&#xFF1A;</p>
-<p>Django + MySQL + Docker</p>
+<p>Django + MySQL + Docker + MySQL-Cluster</p>
 <p>Django&#xFF1A;</p>
 <ul>
 <li>&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x6A21;&#x578B;&#x7684;&#x5BF9;&#x8C61;&#x5173;&#x7CFB;&#x6620;&#x5C04;</li>
@@ -1140,15 +1146,22 @@ log4js.configure({
 <li>&#x590D;&#x5236;&#x65E0;&#x5D29;&#x6E83;&#x4ECE;&#x673A;&#xFF0C;&#x53EF;&#x63D0;&#x9AD8;&#x53EF;&#x7528;&#x6027;</li>
 <li>&#x590D;&#x5236;&#x591A;&#x7EBF;&#x7A0B;&#x4ECE;&#x673A;&#xFF0C;&#x53EF;&#x63D0;&#x9AD8;&#x6027;&#x80FD;</li>
 </ul>
-<p>&#x8D27;&#x5E01;&#x7CFB;&#x7EDF;&#x6574;&#x4F53;&#x6280;&#x672F;&#x6808;&#x4E3A;&#xFF1A; Ethereum + Truffle</p>
+<p>MySQL-Cluster:</p>
 <ul>
-<li>Ethereum&#xFF1A;&#x4E00;&#x4E2A;&#x6709;&#x667A;&#x80FD;&#x5408;&#x7EA6;&#x529F;&#x80FD;&#x7684;&#x533A;&#x5757;&#x94FE;&#x5E73;&#x53F0;&#xFF0C;&#x63D0;&#x4F9B;&#x53BB;&#x4E2D;&#x5FC3;&#x5316;&#x7684;&#x4EE5;&#x592A;&#x865A;&#x62DF;&#x673A;&#x6765;&#x5904;&#x7406;&#x70B9;&#x5BF9;&#x70B9;&#x4E4B;&#x95F4;&#x7684;&#x5408;&#x7EA6;</li>
+<li>MySQL Cluster&#x6784;&#x5EFA;&#x4E8E;NDB&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x4E4B;&#x4E0A;&#xFF0C;&#x63D0;&#x4F9B;&#x9AD8;&#x5EA6;&#x53EF;&#x4F38;&#x7F29;&#x3001;&#x5B9E;&#x65F6;&#x3001;&#x7B26;&#x5408;ACID&#x7684;&#x4E8B;&#x52A1;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x7ED3;&#x5408;&#x4E86;99.999%&#x7684;&#x53EF;&#x7528;&#x6027;&#x548C;&#x5F00;&#x653E;&#x6E90;&#x7801;&#x7684;&#x4F4E;TCO</li>
+<li>MySQL Cluster&#x662F;&#x56F4;&#x7ED5;&#x5206;&#x5E03;&#x5F0F;&#x3001;&#x591A;&#x4E3B;&#x3001;&#x670D;&#x52A1;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x6CA1;&#x6709;&#x5355;&#x70B9;&#x6545;&#x969C;&#xFF0C;&#x5B83;&#x5728;&#x5546;&#x54C1;&#x786C;&#x4EF6;&#x4E0A;&#x6A2A;&#x5411;&#x6269;&#x5C55;&#xFF0C;&#x4EE5;&#x63D0;&#x4F9B;&#x901A;&#x8FC7;SQL&#x548C;NoSQL&#x63A5;&#x53E3;&#x8BBF;&#x95EE;&#x7684;&#x8BFB;&#x5199;&#x5BC6;&#x96C6;&#x578B;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;</li>
+</ul>
+<p>&#x8D27;&#x5E01;&#x7CFB;&#x7EDF;&#x6574;&#x4F53;&#x6280;&#x672F;&#x6808;&#x4E3A;&#xFF1A; </p>
+<p>Go-Ethereum + Truffle</p>
+<ul>
+<li>Go-Ethereum&#xFF1A;&#x4E00;&#x4E2A;&#x57FA;&#x4E8E;Go&#x5B9E;&#x73B0;&#x7684;&#x652F;&#x6301;&#x667A;&#x80FD;&#x5408;&#x7EA6;&#x529F;&#x80FD;&#x7684;&#x533A;&#x5757;&#x94FE;&#x5E73;&#x53F0;&#xFF0C;&#x63D0;&#x4F9B;&#x53BB;&#x4E2D;&#x5FC3;&#x5316;&#x7684;&#x4EE5;&#x592A;&#x865A;&#x62DF;&#x673A;&#x6765;&#x5904;&#x7406;&#x70B9;&#x5BF9;&#x70B9;&#x4E4B;&#x95F4;&#x7684;&#x5408;&#x7EA6;</li>
 <li>Truffle&#xFF1A;&#x4E3A;&#x4EE5;&#x592A;&#x574A;&#x63D0;&#x4F9B;&#x5F00;&#x53D1;&#x3001;&#x6D4B;&#x8BD5;&#x53CA;&#x90E8;&#x7F72;&#x7684;&#x6846;&#x67B6;</li>
 </ul>
-<p>Ethereum&#xFF1A;</p>
+<p>Go-Ethereum&#xFF1A;</p>
 <ul>
 <li>&#x652F;&#x6301;&#x56FE;&#x7075;&#x5B8C;&#x5907;&#x7684;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#xFF0C;&#x53EF;&#x7528;&#x6765;&#x7F16;&#x5199;&#x667A;&#x80FD;&#x5408;&#x7EA6;</li>
-<li></li>
+<li>&#x6BD4;&#x8F83;&#x8D77;&#x5176;&#x4ED6;&#x7684;&#x533A;&#x5757;&#x94FE;&#x5E73;&#x53F0;&#xFF0C;&#x6210;&#x719F;&#x6613;&#x7528;&#xFF0C;&#x8F83;&#x4E3A;&#x6210;&#x719F;</li>
+<li>&#x4F5C;&#x4E3A;&#x591A;&#x79CD;&#x4EA7;&#x54C1;&#x548C;&#x670D;&#x52A1;&#x7684;&#x5E73;&#x53F0;&#xFF0C;&#x4E3A;&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x5F3A;&#x5927;&#x7684;&#x751F;&#x6001;&#x7CFB;&#x7EDF;</li>
 </ul>
 <p>Truffle&#xFF1A;</p>
 <ul>
@@ -1213,9 +1226,9 @@ log4js.configure({
 &#x2502;  &#x2502;  &#x2502;  &#x2502;  &#x251C;&#x2500;CoinArrivalCoin.sol // &#x8D27;&#x5E01;&#x667A;&#x80FD;&#x5408;&#x7EA6;
 &#x2502;  &#x2502;  &#x2502;  &#x2502;  &#x251C;&#x2500;Migrations.sol      // &#x8FC1;&#x79FB;&#x667A;&#x80FD;&#x5408;&#x7EA6;
 &#x2502;  &#x2502;  &#x2502;  &#x2502;  &#x2514;&#x2500;SafeMath.sol        // &#x6570;&#x5B66;&#x8FD0;&#x7B97;&#x5E93;
-&#x2502;  &#x2502;  &#x2502;  &#x251C;&#x2500;migrations // &#x53D1;&#x5E03;&#x811A;&#x672C;&#x6587;&#x4EF6;&#x5939;
-&#x2502;  &#x2502;  &#x2502;  &#x2502;  &#x251C;&#x2500;1_initial_migration.js
-&#x2502;  &#x2502;  &#x2502;  &#x2502;  &#x2514;&#x2500;2_deploy_contracts.js
+&#x2502;  &#x2502;  &#x2502;  &#x251C;&#x2500;migrations // &#x8FC1;&#x79FB;&#x90E8;&#x7F72;&#x811A;&#x672C;&#x6587;&#x4EF6;&#x5939;
+&#x2502;  &#x2502;  &#x2502;  &#x2502;  &#x251C;&#x2500;1_initial_migration.js  // &#x90E8;&#x7F72;&#x521D;&#x59CB;&#x5316;
+&#x2502;  &#x2502;  &#x2502;  &#x2502;  &#x2514;&#x2500;2_deploy_contracts.js   // &#x667A;&#x80FD;&#x5408;&#x7EA6;&#x7684;&#x90E8;&#x7F72;&#x53CA;&#x94FE;&#x63A5;
 &#x2502;  &#x2502;  &#x2502;  &#x251C;&#x2500;test // &#x6D4B;&#x8BD5;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#x5939;
 &#x2502;  &#x2502;  &#x2502;  &#x251C;&#x2500;truffle-config.js // Truffle &#x914D;&#x7F6E;&#x6587;&#x4EF6; 1
 &#x2502;  &#x2502;  &#x2502;  &#x2514;&#x2500;truffle-box.json  // Truffle &#x914D;&#x7F6E;&#x6587;&#x4EF6; 2
@@ -1231,8 +1244,8 @@ log4js.configure({
 <li><strong>&#x6A21;&#x578B;&#x4EA4;&#x4E92;&#x6A21;&#x5757;</strong> &#x8D1F;&#x8D23;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x5BF9;&#x63A5;</li>
 <li><strong>&#x5B89;&#x5168;&#x6A21;&#x5757;</strong> &#x4EE5;&#x4E2D;&#x95F4;&#x4EF6;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x4E3A;&#x6570;&#x636E;&#x63D0;&#x4F9B;&#x4FDD;&#x5BC6;&#x6027;&#x3001;&#x5B8C;&#x6574;&#x6027;&#x7684;&#x4FDD;&#x969C;&#xFF0C;&#x4E14;&#x4E0D;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x5176;&#x5B83;&#x4EE3;&#x7801;&#xFF0C;&#x4F4E;&#x8026;&#x5408;</li>
 <li><strong>&#x540E;&#x53F0;&#x7BA1;&#x7406;&#x6A21;&#x5757;</strong> &#x65B9;&#x4FBF;&#x540E;&#x53F0;&#x4EBA;&#x5458;&#x4EE5;&#x8D85;&#x7EA7;&#x7528;&#x6237;&#x7684;&#x65B9;&#x5F0F;&#x4FEE;&#x6539;&#x3001;&#x67E5;&#x770B;&#x6570;&#x636E;</li>
-<li><strong>&#x5206;&#x5E03;&#x5F0F;&#x6570;&#x636E;&#x5E93;&#x6A21;&#x5757;</strong> &#x91C7;&#x7528;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x5B9E;&#x73B0;&#x7684;&#x6570;&#x636E;&#x5E93;&#x6A21;&#x5757;&#xFF0C;&#x9C81;&#x68D2;&#x6027;&#x597D;</li>
-<li><strong>&#x533A;&#x5757;&#x94FE;&#x8D27;&#x5E01;&#x670D;&#x52A1;&#x6A21;&#x5757;</strong> &#x53BB;&#x4E2D;&#x5FC3;&#x5316;&#x7684;&#x8D27;&#x5E01;&#x670D;&#x52A1;</li>
+<li><strong>&#x5206;&#x5E03;&#x5F0F;&#x6570;&#x636E;&#x5E93;&#x6A21;&#x5757;</strong> &#x91C7;&#x7528;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x5B9E;&#x73B0;&#x7684;&#x6570;&#x636E;&#x5E93;&#x6A21;&#x5757;&#xFF0C;&#x9C81;&#x68D2;&#x6027;&#x597D;&#xFF0C;&#x4E14;&#x6613;&#x4E8E;&#x7BA1;&#x7406;</li>
+<li><strong>&#x533A;&#x5757;&#x94FE;&#x8D27;&#x5E01;&#x670D;&#x52A1;&#x6A21;&#x5757;</strong> &#x53BB;&#x4E2D;&#x5FC3;&#x5316;&#x7684;&#x8D27;&#x5E01;&#x7CFB;&#x7EDF;&#xFF0C;&#x5229;&#x7528;&#x667A;&#x80FD;&#x5408;&#x7EA6;&#x5B9E;&#x73B0;&#x5B89;&#x5168;&#x7A33;&#x5B9A;&#x7684;&#x670D;&#x52A1;</li>
 </ul>
 <h2 id="&#x8F6F;&#x4EF6;&#x8BBE;&#x8BA1;&#x6280;&#x672F;">&#x8F6F;&#x4EF6;&#x8BBE;&#x8BA1;&#x6280;&#x672F;</h2>
 <p>&#x540E;&#x7AEF;&#x91C7;&#x7528;MVT&#x67B6;&#x6784;&#x8BBE;&#x8BA1;</p>
@@ -1324,6 +1337,124 @@ resp[<span class="hljs-string">&apos;data&apos;</span>][<span class="hljs-string
         <span class="hljs-keyword">return</span> _cipher().decrypt(data)
     <span class="hljs-keyword">return</span> data
 </code></pre>
+<p>&#x8D27;&#x5E01;&#x7CFB;&#x7EDF;&#x91C7;&#x7528; ERC20 &#x4EE3;&#x5E01;&#x6807;&#x51C6;&#xFF0C; RRC20 &#x662F;&#x4EE5;&#x592A;&#x574A;&#x4E0A;&#x4E00;&#x79CD;&#x7528;&#x4EE5;&#x8BC4;&#x5224;&#x8BE5;&#x4EE3;&#x5E01;&#x662F;&#x5426;&#x6EE1;&#x8DB3;&#x4E00;&#x5B9A;&#x7684;&#x5B89;&#x5168;&#x6027;&#x548C;&#x53EF;&#x7528;&#x6027;&#x7684;&#x901A;&#x7528;&#x6807;&#x51C6;&#x3002;</p>
+<p>&#x6EE1;&#x8DB3; ERC20 &#x4EE3;&#x5E01;&#x6807;&#x51C6;&#x7684;&#x667A;&#x80FD;&#x5408;&#x7EA6;&#x5FC5;&#x987B;&#x5305;&#x542B;&#x4EE5;&#x4E0B;&#x56DB;&#x4E2A;&#x529F;&#x80FD;&#xFF1A;</p>
+<ul>
+<li>tranfer&#xFF1A;&#x81EA;&#x5DF1;&#x672C;&#x5730;&#x8F6C;&#x8D26;</li>
+<li>approve&#xFF1A;&#x6279;&#x51C6;&#x522B;&#x4EBA;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x7684;&#x94B1;&#xFF08;&#x53EF;&#x591A;&#x6B21;&#x4F7F;&#x7528;&#xFF09;</li>
+<li>transferFrom&#xFF1A;&#x4E0E;approve&#x7ED3;&#x5408;&#x4F7F;&#x7528;</li>
+<li>allowance&#xFF1A;&#x8FD4;&#x56DE;&#x6279;&#x51C6;&#x4F7F;&#x7528;&#x94B1;&#x7684;&#x4F59;&#x989D;</li>
+</ul>
+<p>&#x7531;&#x4E8E;&#x667A;&#x80FD;&#x5408;&#x7EA6;&#x4E2D;&#x7684; bug &#xFF08;&#x5982;&#x8BA1;&#x7B97;&#x6EA2;&#x51FA;&#x7B49;&#x95EE;&#x9898;&#xFF09;&#x4F1A;&#x5BFC;&#x81F4;&#x4E0D;&#x53EF;&#x9006;&#x8F6C;&#x7684;&#x7ED3;&#x679C;&#xFF08;&#x76D7;&#x7528;&#x8D22;&#x4EA7;&#xFF0C;&#x7A7A;&#x624B;&#x5957;&#x767D;&#x72FC;&#x7B49;&#xFF09;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x7F16;&#x5199;&#x4E86;&#x5B89;&#x5168;&#x8BA1;&#x7B97;&#x5E93; SafeMath&#xFF0C;&#x91CC;&#x9762;&#x5229;&#x7528;&#x4E00;&#x4E9B;&#x53EF;&#x5FFD;&#x7565;&#x7684;&#x82B1;&#x9500;&#x6765;&#x5B9E;&#x73B0;&#x4E86;&#x76F8;&#x5BF9;&#x5B89;&#x5168;&#x7684; uint256 &#x7C7B;&#x578B;&#x6570;&#x636E;&#x7684;&#x8D27;&#x5E01;&#x8F6C;&#x79FB;&#x56DB;&#x5219;&#x8FD0;&#x7B97;&#x529F;&#x80FD;&#x3002;</p>
+<pre><code class="lang-js"><span class="hljs-comment">// &#x4E58;&#x6CD5;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mul</span>(<span class="hljs-params">uint256 a, uint256 b</span>) <span class="hljs-title">internal</span> <span class="hljs-title">pure</span> <span class="hljs-title">returns</span> (<span class="hljs-params">uint256</span>) </span>{
+    <span class="hljs-keyword">if</span> (a == <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+    uint256 c = a * b;
+    <span class="hljs-built_in">require</span>(c / a == b);
+
+    <span class="hljs-keyword">return</span> c;
+}
+
+<span class="hljs-comment">// &#x9664;&#x6CD5;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">div</span>(<span class="hljs-params">uint256 a, uint256 b</span>) <span class="hljs-title">internal</span> <span class="hljs-title">pure</span> <span class="hljs-title">returns</span> (<span class="hljs-params">uint256</span>) </span>{
+    <span class="hljs-built_in">require</span>(b &gt; <span class="hljs-number">0</span>);
+    uint256 c = a / b;
+
+    <span class="hljs-keyword">return</span> c;
+}
+
+<span class="hljs-comment">// &#x51CF;&#x6CD5;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sub</span>(<span class="hljs-params">uint256 a, uint256 b</span>) <span class="hljs-title">internal</span> <span class="hljs-title">pure</span> <span class="hljs-title">returns</span> (<span class="hljs-params">uint256</span>) </span>{
+    <span class="hljs-built_in">require</span>(b &lt;= a);
+    uint256 c = a - b;
+
+    <span class="hljs-keyword">return</span> c;
+}
+
+<span class="hljs-comment">// &#x52A0;&#x6CD5;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">uint256 a, uint256 b</span>) <span class="hljs-title">internal</span> <span class="hljs-title">pure</span> <span class="hljs-title">returns</span> (<span class="hljs-params">uint256</span>) </span>{
+    uint256 c = a + b;
+    <span class="hljs-built_in">require</span>(c &gt;= a);
+
+    <span class="hljs-keyword">return</span> c;
+}
+</code></pre>
+<p>CoinArrivalCoin &#x8D27;&#x5E01;&#x7CFB;&#x7EDF;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x6709;&#x4EE5;&#x4E0B;&#x7684;&#x8BBE;&#x8BA1;&#xFF1A;</p>
+<ul>
+<li>&#x603B;&#x4F9B;&#x91CF;&#xFF1A;1000000000</li>
+<li>&#x540D;&#x5B57;&#xFF1A;CoinArrivalCoin</li>
+<li>&#x7B26;&#x53F7;&#xFF1A;CAC</li>
+<li>&#x7CBE;&#x786E;&#x5C0F;&#x6570;&#x4F4D;&#xFF1A;0&#xFF08;&#x6574;&#x6570;&#xFF09;</li>
+</ul>
+<p>ERC20 &#x6807;&#x51C6;&#x4E2D;&#x7684;&#x529F;&#x80FD;&#x5B9E;&#x73B0;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-js">contract Coin is StandardToken {
+
+  <span class="hljs-comment">// &#x4F59;&#x989D;</span>
+    mapping (address =&gt; uint256) public balanceOf;
+
+    mapping (address =&gt; mapping (address =&gt; uint256)) internal allowed;
+
+  <span class="hljs-comment">// &#x6784;&#x9020;&#x5668;</span>
+    <span class="hljs-keyword">constructor</span>() public {
+        totalSupply = <span class="hljs-number">1000000000</span>;
+        name = <span class="hljs-string">&quot;CoinArrivalCoin&quot;</span>;
+        symbol = <span class="hljs-string">&quot;CAC&quot;</span>;
+        decimals = <span class="hljs-number">0</span>;
+        balanceOf[msg.sender] = totalSupply;
+    }
+
+    <span class="hljs-comment">// &#x81EA;&#x5DF1;&#x672C;&#x5730;&#x8F6C;&#x8D26;</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transfer</span>(<span class="hljs-params">address to, uint256 value</span>) <span class="hljs-title">public</span> <span class="hljs-title">returns</span> (<span class="hljs-params">bool success</span>) </span>{
+        <span class="hljs-built_in">require</span>(to != address(<span class="hljs-number">0</span>));
+        <span class="hljs-built_in">require</span>(value &lt;= balanceOf[msg.sender]);
+
+        balanceOf[msg.sender] = sub(balanceOf[msg.sender], value);
+        balanceOf[to] = add(balanceOf[to], value);
+        emit Transfer(msg.sender, to, value);
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+
+    <span class="hljs-comment">// &#x6279;&#x51C6;&#x522B;&#x4EBA;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x7684;&#x94B1;&#xFF08;&#x53EF;&#x591A;&#x6B21;&#x4F7F;&#x7528;&#xFF09;</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">approve</span>(<span class="hljs-params">address spender, uint256 value</span>) <span class="hljs-title">public</span> <span class="hljs-title">returns</span> (<span class="hljs-params">bool success</span>) </span>{
+        <span class="hljs-built_in">require</span>(spender != address(<span class="hljs-number">0</span>));
+
+        allowed[msg.sender][spender] = value;
+        emit Approval(msg.sender, spender, value);
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+
+    <span class="hljs-comment">// &#x4E0E;approve&#x7ED3;&#x5408;&#x4F7F;&#x7528;</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transferFrom</span>(<span class="hljs-params">address from, address to, uint256 value</span>) <span class="hljs-title">public</span> <span class="hljs-title">returns</span> (<span class="hljs-params">bool success</span>) </span>{
+        <span class="hljs-built_in">require</span>(to != address(<span class="hljs-number">0</span>));
+        <span class="hljs-built_in">require</span>(value &lt;= balanceOf[<span class="hljs-keyword">from</span>]);
+        <span class="hljs-built_in">require</span>(value &lt;= allowed[<span class="hljs-keyword">from</span>][msg.sender]);
+
+        balanceOf[<span class="hljs-keyword">from</span>] = sub(balanceOf[<span class="hljs-keyword">from</span>], value);
+        balanceOf[to] = add(balanceOf[to], value);
+        allowed[<span class="hljs-keyword">from</span>][msg.sender] = sub(allowed[<span class="hljs-keyword">from</span>][msg.sender], value);
+
+        emit Transfer(<span class="hljs-keyword">from</span>, to, value);
+
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+
+    <span class="hljs-comment">// &#x8FD4;&#x56DE;&#x6279;&#x51C6;&#x4F7F;&#x7528;&#x94B1;&#x7684;&#x4F59;&#x989D;</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">allowance</span>(<span class="hljs-params">address _owner, address spender</span>) <span class="hljs-title">public</span> <span class="hljs-title">view</span> <span class="hljs-title">returns</span> (<span class="hljs-params">uint256 remaining</span>) </span>{
+      <span class="hljs-keyword">return</span> allowed[_owner][spender];
+    }
+
+}
+</code></pre>
+<p>&#x5206;&#x5E03;&#x5F0F;&#x5B58;&#x50A8;&#x4F7F;&#x7528; &#x7684; Docker-Mysql-Cluster &#x6846;&#x67B6;</p>
+<p><img src="../../assets/design/docker_mysql_cluster.png" alt="mysql_cluster"></p>
+<p>&#x5404;&#x90E8;&#x5206;&#x7684;&#x529F;&#x80FD;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<ul>
+<li>SQL node&#xFF1A;&#x4F7F;&#x7528; NDBCLUSTER &#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x7684;&#x4F20;&#x7EDF; MySQL &#x670D;&#x52A1;&#x5668;&#x3002;</li>
+<li>NDB Management node&#xFF1A;&#x7BA1;&#x7406;NDB&#x96C6;&#x7FA4;&#x4E2D;&#x7684;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#xFF0C;&#x6267;&#x884C;&#x63D0;&#x4F9B;&#x914D;&#x7F6E;&#x6570;&#x636E;&#x3001;&#x542F;&#x52A8;&#x548C;&#x505C;&#x6B62;&#x8282;&#x70B9;&#x4EE5;&#x53CA;&#x8FD0;&#x884C;&#x5907;&#x4EFD;&#x7B49;&#x529F;&#x80FD;&#x3002;</li>
+<li>Data node&#xFF1A;&#x5B58;&#x50A8;&#x96C6;&#x7FA4;&#x6570;&#x636E;&#xFF0C;&#x6211;&#x4EEC;&#x91C7;&#x53D6;4&#x4E2A;&#x526F;&#x672C;&#x6765;&#x63D0;&#x4F9B;&#x5197;&#x4F59;&#xFF0C;&#x4ECE;&#x800C;&#x83B7;&#x5F97;&#x9AD8;&#x53EF;&#x7528;&#x6027;&#x3002;&#x91C7;&#x53D6;&#x4E24;&#x4E2A;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x6BCF;&#x4E2A;&#x670D;&#x52A1;&#x5668;&#x6709;2&#x4E2A;&#x526F;&#x672C;&#x3002;</li>
+</ul>
 
                                 
                                 </section>
@@ -1359,7 +1490,7 @@ resp[<span class="hljs-string">&apos;data&apos;</span>][<span class="hljs-string
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Overview","level":"1.9.1","depth":2,"next":{"title":"Database Design","level":"1.9.2","depth":2,"ref":"","articles":[{"title":"用户系统数据库设计","level":"1.9.2.1","depth":3,"path":"docs/design/userSystem.md","ref":"docs/design/userSystem.md","articles":[]},{"title":"用户及权限系统数据库设计","level":"1.9.2.2","depth":3,"path":"docs/design/db_design.md","ref":"docs/design/db_design.md","articles":[]},{"title":"分布式数据库设计","level":"1.9.2.3","depth":3,"path":"docs/design/db_cluster.md","ref":"docs/design/db_cluster.md","articles":[]}]},"previous":{"title":"Design (软件设计文档)","level":"1.9","depth":1,"ref":"","articles":[{"title":"Overview","level":"1.9.1","depth":2,"path":"docs/design/softwaredesign.md","ref":"docs/design/softwaredesign.md","articles":[]},{"title":"Database Design","level":"1.9.2","depth":2,"ref":"","articles":[{"title":"用户系统数据库设计","level":"1.9.2.1","depth":3,"path":"docs/design/userSystem.md","ref":"docs/design/userSystem.md","articles":[]},{"title":"用户及权限系统数据库设计","level":"1.9.2.2","depth":3,"path":"docs/design/db_design.md","ref":"docs/design/db_design.md","articles":[]},{"title":"分布式数据库设计","level":"1.9.2.3","depth":3,"path":"docs/design/db_cluster.md","ref":"docs/design/db_cluster.md","articles":[]}]},{"title":"API Design","level":"1.9.3","depth":2,"ref":"","articles":[{"title":"服务端接口设计","level":"1.9.3.1","depth":3,"path":"docs/design/serverendAPI.md","ref":"docs/design/serverendAPI.md","articles":[]},{"title":"后端接口设计","level":"1.9.3.2","depth":3,"path":"docs/design/backendAPI.md","ref":"docs/design/backendAPI.md","articles":[]}]},{"title":"软件架构","level":"1.9.4","depth":2,"path":"docs/design/softwareStructure.md","ref":"docs/design/softwareStructure.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/design/softwaredesign.md","mtime":"2019-06-27T09:27:18.988Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-27T09:29:02.673Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Overview","level":"1.9.1","depth":2,"next":{"title":"Database Design","level":"1.9.2","depth":2,"ref":"","articles":[{"title":"用户系统数据库设计","level":"1.9.2.1","depth":3,"path":"docs/design/userSystem.md","ref":"docs/design/userSystem.md","articles":[]},{"title":"用户及权限系统数据库设计","level":"1.9.2.2","depth":3,"path":"docs/design/db_design.md","ref":"docs/design/db_design.md","articles":[]},{"title":"分布式数据库设计","level":"1.9.2.3","depth":3,"path":"docs/design/db_cluster.md","ref":"docs/design/db_cluster.md","articles":[]}]},"previous":{"title":"Design (软件设计文档)","level":"1.9","depth":1,"ref":"","articles":[{"title":"Overview","level":"1.9.1","depth":2,"path":"docs/design/softwaredesign.md","ref":"docs/design/softwaredesign.md","articles":[]},{"title":"Database Design","level":"1.9.2","depth":2,"ref":"","articles":[{"title":"用户系统数据库设计","level":"1.9.2.1","depth":3,"path":"docs/design/userSystem.md","ref":"docs/design/userSystem.md","articles":[]},{"title":"用户及权限系统数据库设计","level":"1.9.2.2","depth":3,"path":"docs/design/db_design.md","ref":"docs/design/db_design.md","articles":[]},{"title":"分布式数据库设计","level":"1.9.2.3","depth":3,"path":"docs/design/db_cluster.md","ref":"docs/design/db_cluster.md","articles":[]}]},{"title":"API Design","level":"1.9.3","depth":2,"ref":"","articles":[{"title":"服务端接口设计","level":"1.9.3.1","depth":3,"path":"docs/design/serverendAPI.md","ref":"docs/design/serverendAPI.md","articles":[]},{"title":"后端接口设计","level":"1.9.3.2","depth":3,"path":"docs/design/backendAPI.md","ref":"docs/design/backendAPI.md","articles":[]}]},{"title":"软件架构","level":"1.9.4","depth":2,"path":"docs/design/softwareStructure.md","ref":"docs/design/softwareStructure.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/design/softwaredesign.md","mtime":"2019-06-27T10:09:56.278Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-27T10:10:26.921Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

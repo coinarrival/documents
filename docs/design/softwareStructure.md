@@ -1,5 +1,9 @@
 # 软件架构
 
+|版本|日期|描述|作者|
+|-|-|-|-|
+|v0.1|2019年6月24日|初稿|BroInBro|
+
 ![SoftwareStructure](../../assets/design/softwareStructure.png)
 
 ## 架构问题

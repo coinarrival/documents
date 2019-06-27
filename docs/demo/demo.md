@@ -1,5 +1,9 @@
 # 项目Demo
 
+|版本|日期|描述|作者|
+|-|-|-|-|
+|v0.1|2019年6月25日|初稿|Cynthia|
+
 ## 登录和注册
 
 ![login and register](../../assets/demo/loginAndRegister.gif)
