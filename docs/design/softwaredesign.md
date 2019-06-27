@@ -429,8 +429,8 @@ MySQL:
 
 MySQL-Cluster:
 
- - 是一个适用于分布式计算环境的高可用性、高冗余版本的 MySQL 系统
- - 便于管理分布式存储，包含MySQL服务器（用于访问NDB数据）、数据节点（用于存储数据）、一个或多个管理服务器，以及可能的其他专门的数据访问程序
+ - MySQL Cluster构建于NDB存储引擎之上，提供高度可伸缩、实时、符合ACID的事务数据库，结合了99.999%的可用性和开放源码的低TCO
+ - MySQL Cluster是围绕分布式、多主、服务架构设计的，所以没有单点故障，它在商品硬件上横向扩展，以提供通过SQL和NoSQL接口访问的读写密集型工作负载
 
 
 货币系统整体技术栈为： 
@@ -699,8 +699,8 @@ contract Coin is StandardToken {
   // 构造器
 	constructor() public {
         totalSupply = 1000000000;
-        name = "Coin";
-        symbol = "C";
+        name = "CoinArrivalCoin";
+        symbol = "CAC";
         decimals = 0;
         balanceOf[msg.sender] = totalSupply;
     }
@@ -747,3 +747,12 @@ contract Coin is StandardToken {
  
 }
 ```
+
+分布式存储使用 的 Docker-Mysql-Cluster 框架
+
+![mysql_cluster](../../assets/design/docker_mysql_cluster.png)
+
+各部分的功能如下所示：
+ - SQL node：使用 NDBCLUSTER 存储引擎的传统 MySQL 服务器。
+ - NDB Management node：管理NDB集群中的其他节点，执行提供配置数据、启动和停止节点以及运行备份等功能。
+ - Data node：存储集群数据，我们采取4个副本来提供冗余，从而获得高可用性。采取两个服务器，每个服务器有2个副本。
