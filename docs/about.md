@@ -15,9 +15,9 @@
 ## 重要分析设计文档
 
 - [产品调研文档](investigation.md)
-- [需求规格说明书](requirementSpecification.md)
+- [需求规格说明书](./srs/requirementSpecification.md)
 - [产品特性](productBacklog.md)
-- [软件设计说明书](softwaredesign.md)
+- [软件设计说明书](./design/softwaredesign.md)
 
 ## 项目结构
 
