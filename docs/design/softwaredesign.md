@@ -24,7 +24,7 @@
 
 前端、服务端、后端分离，前端和服务端，服务端和后端之间采用RESTful API 完成交互。
 
-其他详见 [软件架构](https://github.com/coinarrival/documents/blob/master/docs/design/softwareStructure.md)，[服务端API设计](https://github.com/coinarrival/documents/blob/master/docs/design/serverendAPI.md)，[后端API设计](https://github.com/coinarrival/documents/blob/master/docs/design/backendAPI.md)
+其他详见 [软件架构](./softwareStructure.md)，[服务端API设计](./serverendAPI.md)，[后端API设计](./backendAPI.md)，[数据库设计](./userSystem.md)
 
 # 前端
 
