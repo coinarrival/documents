@@ -252,6 +252,57 @@ mocha + chai
   │  └─utils // 工具函数
   ```
 
+  在 Koa2 的基础上，进一步地，我们将路由处理也提取到了单独文件中，这是通过 `controller` 中间件实现的：
+
+  ```javascript
+  /*
+  * @file: middleware/controller.js
+  * @line: 39-50
+  */
+  function addControllers(router) {
+    let files = fs.readdirSync(PATH.resolve(__dirname, '../controllers'));
+    let js_files = files.filter((f) => {
+      return f.endsWith('.js');
+    });
+
+    for (let f of js_files) {
+      defaultLogger.info(`[Import Controller] ${f}`);
+      let mapping = require(PATH.resolve(__dirname, '../controllers/' + f));
+      addMapping(router, mapping);
+    }
+  }
+  ```
+
+  当我们将其通过中间件的方式引用到 Koa2 对象后，它将会从 `controllers` 文件夹中自动遍历文件，并寻找他们 export 的对象，并转发到 `addMapping` 函数继续处理：
+
+  ```javascript
+  /*
+  * @file: middleware/controller.js
+  * @line: 12-30
+  */
+  function addMapping(router, mapping) {
+    for (let url in mapping) {
+      if (url.startsWith('GET ')) {
+        let path = url.substring(4);
+        router.get(path, mapping[url]);
+        defaultLogger.info(`  [Register URL] GET ${path}`);
+      } else if (url.startsWith('POST ')) {
+        let path = url.substring(5);
+        router.post(path, mapping[url]);
+        defaultLogger.info(`  [Register URL] POST ${path}`);
+      } else if (url.startsWith('DELETE ')) {
+        let path = url.substring(7);
+        router.delete(path, mapping[url]);
+        defaultLogger.info(`  [Register URL] DELETE ${path}`);
+      } else {
+        defaultLogger.info(`  [Register URL] INVALID ${url}`);
+      }
+    }
+  }
+  ```
+
+  在这里，`addMapping` 解析我们在 controllers 中暴露的字符串，并且将其添加为 Koa2 router 的路由处理函数。模块分离使得功能可以集中处理和维护的好处也在这里体现——我们可以很简单地就实现对于实时路由信息的打印，只需要在添加路由方法时 Log 即可。
+
 # 后端
 
 ## 技术选型及理由
