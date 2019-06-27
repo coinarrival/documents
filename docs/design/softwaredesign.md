@@ -208,7 +208,7 @@ mocha + chai
 
 ## 软件设计技术
 
-- 流程式控制
+- **流程式控制**
 
   对于服务端接收到请求，它的处理生命周期，通过流程管理。每一个流程，处理一部分内容，到最后处理完毕，返回结果；在处理流程内出现异常，则中断处理返回错误信息。
 
@@ -244,7 +244,7 @@ mocha + chai
 
   在使用 Koa2 框架的同时，我们也引入了其推崇的流程控制设计模式。流程式控制使得一条请求的处理过程变得更加可控，从分析请求合法性，到请求解析，到处理数据，到最终返回，我们将每一个不同阶段的不同人物分配到不同的处理函数或中间件中，从而使得每一个过程只专注于该过程的工作，不必担心前序合法的校验。这样的设计大幅降低了代码耦合程度，提高了代码可读性和可维护性。
 
-- 模块分离
+- **模块分离**
 
   在开发过程中，我们将代码分模块(`config`，`controller`，`middleware`，`utils`)进行开发，不同模块处理不同工作，并且相互之间提供支持。模块分离使得代码耦合度降低，维护时可快速定位问题所在。同时，在 `utils` 内我们提供了复用程度高的代码，缩短了开发所需时间，并降低了维护时的错误定位难度。
 
@@ -306,6 +306,98 @@ mocha + chai
   ```
 
   在这里，`addMapping` 解析我们在 controllers 中暴露的字符串，并且将其添加为 Koa2 router 的路由处理函数。模块分离使得功能可以集中处理和维护的好处也在这里体现——我们可以很简单地就实现对于实时路由信息的打印，只需要在添加路由方法时 Log 即可。
+
+- **日志监控**
+
+  前面提到，我们对每一个请求采用流程式控制来管理。为了提高程序维护性，我们对处理流程加入日志管理。我们设定每天生成新的日志文件，日志文件通过日期命名来区分。在每一个控制流程内，提供日志输出：正确处理的请求，我们写入 `response` 日志中；异常抛出，则写入 `error` 日志中。每当服务端产生错误或者返回错误数据，根据日志，可以快速定位异常点。
+
+  ![log](../../assets/design/serverLog.png)
+
+  示例日志如下：
+
+  - error
+
+    ```log
+    [2019-06-25T23:44:30.687] [ERROR] errLogger - POST /account_info: Unknown backend error
+    ```
+  - correct
+
+    ```
+    [2019-06-25T20:16:43.877] [INFO] resLogger - GET /task: Success for taskID 1
+    ```
+
+  同时，日志输出是一个可复用的模块，所以我们依据 `log4js` 库，定制了我们的 `logger` 工具函数。它提供三种输出方式且只响应预设的优先级信息。只有输出信息达到相应的优先级等级，才会被输出。优先级等级从低到高包含：`tracert`，`info`，`debug`，`error`，`fatal`五个等级。在编码时，针对不同信息，可以标记信息输出的等级。三个 `logger` 属于 `log4js` 类且设置如下：
+  
+  - defaultLogger，输出到控制台，响应所有等级信息
+  - errorLogger，输出到 error 日志，响应 `error` 及以上等级信息
+  - responseLogger，输出到 response 日志，响应 `info` 及以上等级信息
+
+  **在实际测试中，日志帮助定位问题提供了很大的帮助**，起初加入日志设计，是一个很明智的决定。
+  
+  具体 `logger` 编码实现如下：
+
+  ```javascript
+  const log4js = require('log4js');
+  const path = require('path');
+
+  // log file base path
+  const LOG_PATH = path.resolve(__dirname, '../../logs');
+
+  // error log file path
+  const ERROR_LOG_DIR = '/error';
+  const ERROR_LOG_FILE = 'error';
+  const ERROR_LOG_PATH = `${LOG_PATH}${ERROR_LOG_DIR}/${ERROR_LOG_FILE}`;
+
+  // response log file path
+  const RESPONSE_LOG_DIR = '/response';
+  const RESPONSE_LOG_FILE = 'response';
+  const RESPONSE_LOG_PATH = `${LOG_PATH}${RESPONSE_LOG_DIR}/${RESPONSE_LOG_FILE}`;
+
+  log4js.configure({
+    appenders: {
+      'console': {
+        'type': 'console'
+      },
+      'errLogger': {
+        type: 'dateFile',
+        path: ERROR_LOG_DIR,
+        filename: ERROR_LOG_PATH,
+        pattern: '-yyyy-MM-dd.log',
+        alwaysIncludePattern: true,
+        encoding: 'utf-8',
+        maxLogSize: 1000
+      },
+      'resLogger': {
+        type: 'dateFile',
+        path: RESPONSE_LOG_DIR,
+        filename: RESPONSE_LOG_PATH,
+        pattern: '-yyyy-MM-dd.log',
+        alwaysIncludePattern: true,
+        encoding: 'utf-8',
+        maxLogSize: 1000
+      }
+    },
+    categories: {
+      'default': {
+        appenders: ['console'],
+        level: 'all'
+      },
+      'errLogger': {
+        appenders: ['errLogger'],
+        level: 'error'
+      },
+      'resLogger': {
+        appenders: ['resLogger'],
+        level: 'info'
+      }
+    },
+    baseLogPath: LOG_PATH
+  });
+
+  module.exports = function (loggerName) {
+    return log4js.getLogger(loggerName);
+  };
+  ```
 
 # 后端
 
