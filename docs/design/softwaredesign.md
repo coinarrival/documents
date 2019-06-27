@@ -368,7 +368,7 @@ MySQL:
 
 后端采用MVT架构设计
 
-![MVT](../../assets/design/MVT.PNG)
+![MVT](../../assets/design/MVT.png)
 
 MVT是Model-View-Template的缩写
 
