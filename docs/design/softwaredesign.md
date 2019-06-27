@@ -284,3 +284,49 @@ Docker:
 ## 软件设计技术
 
 **TODO**: 给出具体设计在源代码中出现的位置，指明对应模块和代码
+
+# 货币系统
+
+
+## 技术选型及理由
+
+货币系统整体技术栈为： Ethereum + Truffle
+
+ - Ethereum：一个有智能合约功能的区块链平台，提供去中心化的以太虚拟机来处理点对点之间的合约
+ - Truffle：为以太坊提供开发、测试及部署的框架
+
+Ethereum：
+ - 支持图灵完备的编程语言，可用来编写智能合约
+ - 
+
+
+Truffle：
+
+ - 内置智能合约编译，链接，部署和二进制文件的管理
+ - 针对快速迭代开发的自动化合约测试
+ - 可脚本化，可扩展的部署与迁移
+ - 与合约直接通信的交互控制台
+
+## 架构设计
+
+货币系统的主要文件结构：
+
+```txt
+├─currency_system // 货币系统代码文件夹
+│  ├─contracts // 项目配置文件夹
+│  │  ├─CoinArrivalCoin.sol // 货币智能合约
+│  │  ├─Migrations.sol      // 迁移智能合约
+│  │  └─SafeMath.sol        // 数学运算库
+│  ├─migrations // 发布脚本文件夹
+│  │  ├─1_initial_migration.js
+│  │  └─2_deploy_contracts.js
+│  └─test // 测试代码文件夹
+├─truffle-config.js // Truffle 配置文件 1
+└─truffle-box.json  // Truffle 配置文件 2
+```
+
+## 模块划分
+
+
+## 软件设计技术
+
