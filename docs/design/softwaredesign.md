@@ -281,14 +281,17 @@ MySQL:
 - 复制多线程从机，可提高性能
 
 
-货币系统整体技术栈为： Ethereum + Truffle
+货币系统整体技术栈为： 
 
- - Ethereum：一个有智能合约功能的区块链平台，提供去中心化的以太虚拟机来处理点对点之间的合约
+Go-Ethereum + Truffle
+
+ - Go-Ethereum：一个基于Go实现的支持智能合约功能的区块链平台，提供去中心化的以太虚拟机来处理点对点之间的合约
  - Truffle：为以太坊提供开发、测试及部署的框架
 
-Ethereum：
+Go-Ethereum：
  - 支持图灵完备的编程语言，可用来编写智能合约
- - 
+ - 比较起其他的区块链平台，成熟易用，较为成熟
+ - 作为多种产品和服务的平台，为系统提供强大的生态系统
 
 Truffle：
 
@@ -357,9 +360,9 @@ Truffle：
 │  │  │  │  ├─CoinArrivalCoin.sol // 货币智能合约
 │  │  │  │  ├─Migrations.sol      // 迁移智能合约
 │  │  │  │  └─SafeMath.sol        // 数学运算库
-│  │  │  ├─migrations // 发布脚本文件夹
-│  │  │  │  ├─1_initial_migration.js
-│  │  │  │  └─2_deploy_contracts.js
+│  │  │  ├─migrations // 迁移部署脚本文件夹
+│  │  │  │  ├─1_initial_migration.js  // 部署初始化
+│  │  │  │  └─2_deploy_contracts.js   // 智能合约的部署及链接
 │  │  │  ├─test // 测试代码文件夹
 │  │  │  ├─truffle-config.js // Truffle 配置文件 1
 │  │  │  └─truffle-box.json  // Truffle 配置文件 2
