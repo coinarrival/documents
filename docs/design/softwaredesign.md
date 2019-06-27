@@ -5,7 +5,8 @@
 |v0.1|2019年6月14日|初稿|BroImBro|
 |v0.2|2019年6月25日|模板设计|快乐舔狗|
 |v0.3|2019年6月26日|补充前端部分|Cynthia|
-|v0.3|2019年6月26日|补充服务端部分|BroInBro|
+|v0.4|2019年6月26日|补充服务端部分|BroInBro|
+|v0.5|2019年6月27日|补充后端部分|张三丰|
 
 > 声明：  
 > **小组原创**：本项目(coinarrival)中全部仓库代码与文档为小组成员原创。  
@@ -253,15 +254,21 @@ mocha + chai
 
 Django + MySQL + Docker
 
-+ Django： 作为后端应用框架
-+ MySQL： 作为数据库框架
-+ Docker: 分布式部署
-
 Django：
+- 用于创建模型的对象关系映射
+- 为最终用户设计的完美管理界面
+- 一流的 URL 设计
+- 设计者友好的模板语言
+- 缓存系统
+
 
 MySQL:
-
-Docker:
+- 支持多线程，充分利用CPU资源
+- 优化的SQL查询算法，有效地提高查询速度
+- 支持大型的数据库。可以处理拥有上千万条记录的大型数据库
+- 复制全局事务标识，可支持自我修复式集群
+- 复制无崩溃从机，可提高可用性
+- 复制多线程从机，可提高性能
 
 
 ## 架构设计
@@ -269,12 +276,174 @@ Docker:
 后端部分的主要文件结构：
 
 ```txt
-
+├─BackEnd
+│  │  Dockerfile // 项目 docker 镜像配置文件
+│  │  requirements.txt // 项目依赖
+│  │  start.sh // 启动脚本
+│  │  
+│  ├─BackEnd
+│  │  │  manage.py // 管理文件
+│  │  │  
+│  │  ├─accept_task_info // 管理接受任务的应用
+│  │  │  │  admin.py // 后台管理
+│  │  │  │  apps.py
+│  │  │  │  crypto.py // 加密控件
+│  │  │  │  models.py // 数据模型
+│  │  │  │  tests.py // 测试文件
+│  │  │  │  urls.py // 路由
+│  │  │  │  views.py // 交互逻辑函数
+│  │  │          
+│  │  ├─account_info // 管理账户信息
+│  │  │  │  admin.py // 后台管理
+│  │  │  │  apps.py
+│  │  │  │  crypto.py // 加密控件
+│  │  │  │  models.py // 数据模型
+│  │  │  │  tests.py // 测试文件
+│  │  │  │  urls.py // 路由
+│  │  │  │  views.py // 交互逻辑函数
+│  │  │          
+│  │  ├─BackEnd
+│  │  │  │  settings.py // 配置文件
+│  │  │  │  urls.py // 路由
+│  │  │  │  wsgi.py
+│  │  │          
+│  │  ├─task_info // 任务管理
+│  │  │  │  admin.py // 后台管理
+│  │  │  │  apps.py
+│  │  │  │  crypto.py // 加密控件
+│  │  │  │  models.py // 数据模型
+│  │  │  │  tests.py // 测试文件
+│  │  │  │  urls.py // 路由
+│  │  │  │  views.py // 交互逻辑函数
+│  │  │          
+│  │  └─wallet_info // 钱包管理
+│  │     │  admin.py // 后台管理
+│  │     │  apps.py
+│  │     │  crypto.py // 加密控件
+│  │     │  models.py // 数据模型
+│  │     │  tests.py // 测试文件
+│  │     │  urls.py // 路由
+│  │     │  views.py // 交互逻辑函数
+│  │              
+│  ├─currency_system
+│  │  │  truffle-box.json
+│  │  │  truffle-config.js // 配置文件
+│  │  │  
+│  │  ├─contracts
+│  │  │      CoinArrivalCoin.sol // 货币合约
+│  │  │      Migrations.sol
+│  │  │      SafeMath.sol // 保证安全的数学函数
+│  │  │      
+│  │  ├─migrations
+│  │  │      1_initial_migration.js
+│  │  │      2_deploy_contracts.js
+│  │          
+│  └─design
+│          model.uxf // 数据库设计文件
 ```
 
 ## 模块划分
 
+后端主要分为路由模块、逻辑处理模块、模型交互模块、安全模块、后台管理模块、分布式数据库模块、区块链货币服务模块
+
+- **路由模块** 负责将服务端不同的请求导向
+- **逻辑处理模块** 负责解析服务端请求，获取和处理数据库数据
+- **模型交互模块** 负责与数据库对接
+- **安全模块** 以中间件的形式，为数据提供保密性、完整性的保障，且不需要修改其它代码，低耦合
+- **后台管理模块** 方便后台人员以超级用户的方式修改、查看数据
+- **分布式数据库模块** 采用负载均衡实现的数据库模块，鲁棒性好
+- **区块链货币服务模块** 去中心化的货币服务
 
 ## 软件设计技术
 
-**TODO**: 给出具体设计在源代码中出现的位置，指明对应模块和代码
+后端采用MVT架构设计
+
+![MVT](../../assets/design/MVT.PNG)
+
+MVT是Model-View-Template的缩写
+
+Django框架接收了用户请求和参数后，再通过正则表达式匹配URL，转发给对应视图进行处理。视图调用M处理数据，再调用T返回数据给服务端
+
+- M表示model，负责与数据库交互
+  - 对应与四个子应用的model.py，定义了数据结构，例如用户管理子应用的model
+```python
+class User(models.Model):
+    username = models.CharField(max_length=100, unique=True)
+    gender = models.CharField(max_length=30, null=True)
+    email = models.CharField(max_length=50, unique=True)
+    phone = models.CharField(max_length=15, unique=True)
+    school = models.CharField(max_length=50, null=True)
+    major = models.CharField(max_length=30, null=True)
+    age = models.IntegerField(null=True)
+    role = models.CharField(max_length=30, null=True)
+    studentID = models.CharField(max_length=30, null=True)
+    teacherID = models.CharField(max_length=30, null=True)
+    grade = models.CharField(max_length=30, null=True)
+    password = models.CharField(max_length=30)
+    avatar = models.CharField(max_length=300, null=True)
+```
+- V表示view，是核心，负责接收请求、获取数据、返回结果
+  - 对应于四个子应用的view.py，负责处理解析服务端的请求，执行相应的数据获取和处理，例如返回参与任务情况的部分逻辑
+```python
+def operate_acceptance(request):
+    if request.method == 'GET':
+        try:# 解析服务端请求
+            page = int(decrypt(request.GET['page']))
+            tusername = decrypt(request.GET['issuer'])
+            ttaskID = decrypt(request.GET['taskID'])
+        except:
+            return dealResponse(400)
+        try: # 获取数据
+            fuser = User.objects.get(username=tusername)
+            ttask = Task.objects.get(taskID=ttaskID)
+        except(User.DoesNotExist, Task.DoesNotExist):
+            return dealResponse(404)
+        if fuser != ttask.issuer:
+            return dealResponse(401)
+        # 计算和处理数据
+        result = AcceptTask.objects.filter(task=ttask)
+        max_pages = math.ceil(float(len(result)) / MAX_PAGE_ITEMS)
+        if page > max_pages or page <= 0:
+            return dealResponse(416, {"data": {"max_pages": max_pages}})
+        page = page - 1
+        resp = {"data" : {
+                "records" : [], 
+                "max_pages" : max_pages
+            }
+        }
+        startid = page * MAX_PAGE_ITEMS
+        endid = min(len(result), (page+1)*MAX_PAGE_ITEMS)
+# ...
+```
+- T表示template，负责将数据呈现给服务端
+  - 由于格式简单，包含在四个子应用中的view.py文件，例如呈现任务列表的逻辑
+```python
+# 返回指定格式
+for i in range(startid, endid):
+    oner =  {
+    "userID": result[i].user.id,
+    "isFinished": result[i].isFinished, 
+    "answer":result[i].answer
+}
+    resp['data']['records'].append(oner)
+```
+
+在安全方面，采用AES加密和消息验证码，能有效保证数据的保密性、完整性，避免信道窃听、重放攻击的实施，例如crypto.py中的AES加密
+
+```python
+def _pad(s): return s + (AES.block_size - len(s) % AES.block_size) * chr(AES.block_size - len(s) % AES.block_size) 
+def _cipher():
+    key = settings.SECRET_KEY
+    # return AES.new(key=key, mode=AES.MODE_CBC, IV=iv)
+    return AES.new(key=key[:32], mode=AES.MODE_CBC, IV=key[:16])
+ 
+def encrypt(data):
+    if settings.ENABLE_CRYPTO:
+        return _cipher().encrypt(_pad(data))
+    return data
+    
+def decrypt(data):
+    if settings.ENABLE_CRYPTO:
+        return _cipher().decrypt(data)
+    return data
+```
