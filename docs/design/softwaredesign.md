@@ -5,6 +5,7 @@
 |v0.1|2019年6月14日|初稿|BroImBro|
 |v0.2|2019年6月25日|模板设计|快乐舔狗|
 |v0.3|2019年6月26日|补充前端部分|Cynthia|
+|v0.3|2019年6月26日|补充服务端部分|BroInBro|
 
 > 声明：  
 > **小组原创**：本项目(coinarrival)中全部仓库代码与文档为小组成员原创。  
@@ -113,35 +114,136 @@ Vue是基于MVVM架构的，因此前端部分可以应用了MVVM的设计，通
 ## 技术选型及理由
 
 服务端整体技术栈为：
-Koa2 + axios
+koa2 + axios + mocha + chai + Docker
 
-+ Koa2：轻量级 Web 开发框架，作为服务端框架
++ koa2：基于 JavaScript 的 Web 开发框架，利用生态圈内中间件开发服务端
++ koa-cors： 中间件负责处理跨域请求
++ koa-jwt： 中间件负责用户鉴权
++ jsonwebtoken： 中间件签发jwt
++ koa-body： 中间件负责解析请求数据
 + koa-router： 中间件负责路由管理
-+ koa-token： 负责用户鉴权
++ koa-static： 中间件负责静态资源发送
 + axios： 负责从后端请求和发送数据
++ mocha：基于 JavaScript 的测试框架
++ chai：基于 JavaScript 的断言库
++ Docker：免于环境配置困扰，快速部署运行
 
 koa2：
 
 + 轻量、易于扩展
++ 生态圈中间件丰富，满足各种需求
++ 支持 ES6 语法，async 和 await 避免回调地狱
 
 axios：
 
++ waiting
 
+mocha + chai
+
++ 顺序执行测试，异常不中断
++ 测试报告中异常与测试样例相匹配
++ 支持异步函数测试
++ 断言语义化，测试代码可读性更高
 
 ## 架构设计
 
 服务端部分的主要文件结构：
 
 ```txt
-
+├─bin // 代码文件夹
+│  ├─config // 项目配置文件夹
+│  │  └─config.js   // 项目配置
+│  ├─controllers // 路由文件夹
+│  │  ├─acceptance.js
+│  │  ├─accepted_tasks.js
+│  │  ├─account_info.js
+│  │  ├─balance.js
+│  │  ├─created_tasks.js
+│  │  ├─login.js
+│  │  ├─registration.js
+│  │  ├─task.js
+│  │  └─tasks.js
+│  ├─middleware // 自制中间件
+│  │  ├─body.js         // 请求解析
+│  │  ├─controller.js   // 路由注册
+│  │  ├─login_check.js  // jwt 验证
+│  │  └─static.js       // 静态资源服务
+│  └─utils // 工具函数
+│  │  ├─decodeToken.js      // 解析 jwt
+│  │  ├─decodeUsername.js   // 解析用户名
+│  │  ├─format.js           // 验证数据格式
+│  │  └─logger.js           // log 函数
+│  └─app.js // 项目入口文件
+├─logs // 日志文件
+│  ├─error      // 错误日志
+│  └─response   // 请求日志
+├─node_modules  // 第三方库
+│  └─... modules 
+├─resources // 静态资源文件夹
+├─test // 测试代码文件夹
+│  └─test.js // 测试代码
+├─.travis.yml   // Travis CI 配置文件
+├─development.js// 项目热更新入口
+├─Dockerfile    // 项目 docker 镜像配置文件
+├─docker-compose.yml    // 整合项目 docker 配置文件
+└─package.json  // 项目描述和依赖关系
 ```
 
 ## 模块划分
 
+服务端模块主要划分为：**配置模块，路由模块，中间件模块**和**工具函数模块**
+
+![ServerEnd](../../assets/design/koa.png)
 
 ## 软件设计技术
 
-**TODO**: 给出具体设计在源代码中出现的位置，指明对应模块和代码
+- 流程式控制
+
+  对于服务端接收到请求，它的处理生命周期，通过流程管理。每一个流程，处理一部分内容，到最后处理完毕，返回结果；在处理流程内出现异常，则中断处理返回错误信息。
+
+  ![control](../../assets/design/serverControl.png)
+
+  ```javascript
+  const app = new koa();
+
+  // cors request
+  app.use(cors({
+    //...
+  }));
+
+  // verification
+  app.use(
+    koaJwt({
+      //...
+    })
+  );
+
+  // body parse
+  app.use(body());
+
+  // router
+  app.use(router());
+
+  // other control
+
+  app.listen(config.port, () => {
+    defaultLogger.trace(`Server running at port:${config.port}`);
+  });
+  ```
+
+  流程式控制使得一条请求的处理过程变得更加可控，从分析请求合法性，到请求解析，到处理数据，到最终返回，每一个过程只专注于该过程的工作，不必担心前序合法的校验。
+
+- 模块分离
+
+  将代码分模块(`config`，`controller`，`middleware`，`utils`)进行开发，不同模块处理不同工作，并且相互之间提供支持。模块分离使得代码耦合度降低，维护时可快速定位问题所在。
+
+  ```txt
+  ├─bin // 代码文件夹
+  │  ├─config // 项目配置
+  │  ├─controllers // 路由
+  │  ├─middleware // 中间件
+  │  └─utils // 工具函数
+  ```
 
 # 后端
 
