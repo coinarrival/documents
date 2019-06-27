@@ -138,7 +138,9 @@ koa2：
 
 axios：
 
-+ waiting
++ 相较于 jQuery，更专注于 AJAX 请求，避免引入冗余甚至冲突的代码
++ 轻量，高效
++ 支持 Promise，语法更规整易读
 
 mocha + chai
 
@@ -156,15 +158,15 @@ mocha + chai
 │  ├─config // 项目配置文件夹
 │  │  └─config.js   // 项目配置
 │  ├─controllers // 路由文件夹
-│  │  ├─acceptance.js
-│  │  ├─accepted_tasks.js
-│  │  ├─account_info.js
-│  │  ├─balance.js
-│  │  ├─created_tasks.js
-│  │  ├─login.js
-│  │  ├─registration.js
-│  │  ├─task.js
-│  │  └─tasks.js
+│  │  ├─acceptance.js // /acceptance 路由，处理对于任务接受的请求
+│  │  ├─accepted_tasks.js // /accepted_tasks 路由，处理对于已接受任务的请求
+│  │  ├─account_info.js // /account_info 路由，处理对于用户信息的请求
+│  │  ├─balance.js // /balance 路由 处理对于账户余额的请求
+│  │  ├─created_tasks.js // /created_tasks 路由，处理对于创建的任务的请求
+│  │  ├─login.js // /login 路由，处理登陆请求
+│  │  ├─registration.js // /registration 路由，处理注册请求
+│  │  ├─task.js // /task 路由，处理对于任务实体的请求
+│  │  └─tasks.js // /tasks 路由，处理对于任务实体的批量请求
 │  ├─middleware // 自制中间件
 │  │  ├─body.js         // 请求解析
 │  │  ├─controller.js   // 路由注册
