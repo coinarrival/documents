@@ -9,6 +9,7 @@
 |v0.4|2019年6月26日|补充服务端部分|BroInBro|
 |v0.4.1|2019年6月26日|补充服务端部分|Hairi|
 |v0.5|2019年6月26日|补充后端部分|张三丰|
+|v0.5.1|2019年6月26日|补充货币系统|快乐舔狗|
 
 
 
@@ -405,9 +406,10 @@ mocha + chai
 
 后端整体技术栈为：
 
-Django + MySQL + Docker
+Django + MySQL + Docker + MySQL-Cluster
 
 Django：
+
 - 用于创建模型的对象关系映射
 - 为最终用户设计的完美管理界面
 - 一流的 URL 设计
@@ -416,6 +418,7 @@ Django：
 
 
 MySQL:
+
 - 支持多线程，充分利用CPU资源
 - 优化的SQL查询算法，有效地提高查询速度
 - 支持大型的数据库。可以处理拥有上千万条记录的大型数据库
@@ -424,17 +427,27 @@ MySQL:
 - 复制多线程从机，可提高性能
 
 
+MySQL-Cluster:
+
+ - 是一个适用于分布式计算环境的高可用性、高冗余版本的 MySQL 系统
+ - 便于管理分布式存储，包含MySQL服务器（用于访问NDB数据）、数据节点（用于存储数据）、一个或多个管理服务器，以及可能的其他专门的数据访问程序
+
+
 货币系统整体技术栈为： 
+
 
 Go-Ethereum + Truffle
 
  - Go-Ethereum：一个基于Go实现的支持智能合约功能的区块链平台，提供去中心化的以太虚拟机来处理点对点之间的合约
  - Truffle：为以太坊提供开发、测试及部署的框架
 
+
 Go-Ethereum：
+
  - 支持图灵完备的编程语言，可用来编写智能合约
  - 比较起其他的区块链平台，成熟易用，较为成熟
  - 作为多种产品和服务的平台，为系统提供强大的生态系统
+
 
 Truffle：
 
@@ -523,8 +536,8 @@ Truffle：
 - **模型交互模块** 负责与数据库对接
 - **安全模块** 以中间件的形式，为数据提供保密性、完整性的保障，且不需要修改其它代码，低耦合
 - **后台管理模块** 方便后台人员以超级用户的方式修改、查看数据
-- **分布式数据库模块** 采用负载均衡实现的数据库模块，鲁棒性好
-- **区块链货币服务模块** 去中心化的货币服务
+- **分布式数据库模块** 采用负载均衡实现的数据库模块，鲁棒性好，且易于管理
+- **区块链货币服务模块** 去中心化的货币系统，利用智能合约实现安全稳定的服务
 
 ## 软件设计技术
 
@@ -618,4 +631,119 @@ def decrypt(data):
     if settings.ENABLE_CRYPTO:
         return _cipher().decrypt(data)
     return data
+```
+
+货币系统采用 ERC20 代币标准， RRC20 是以太坊上一种用以评判该代币是否满足一定的安全性和可用性的通用标准。
+
+满足 ERC20 代币标准的智能合约必须包含以下四个功能：
+ - tranfer：自己本地转账
+ - approve：批准别人使用自己的钱（可多次使用）
+ - transferFrom：与approve结合使用
+ - allowance：返回批准使用钱的余额
+
+由于智能合约中的 bug （如计算溢出等问题）会导致不可逆转的结果（盗用财产，空手套白狼等），所以我们编写了安全计算库 SafeMath，里面利用一些可忽略的花销来实现了相对安全的 uint256 类型数据的货币转移四则运算功能。
+
+```js
+// 乘法
+function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+    if (a == 0) {
+        return 0;
+    }
+    uint256 c = a * b;
+    require(c / a == b);
+
+    return c;
+}
+
+// 除法
+function div(uint256 a, uint256 b) internal pure returns (uint256) {
+    require(b > 0);
+    uint256 c = a / b;
+
+    return c;
+}
+
+// 减法
+function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+    require(b <= a);
+    uint256 c = a - b;
+
+    return c;
+}
+
+// 加法
+function add(uint256 a, uint256 b) internal pure returns (uint256) {
+    uint256 c = a + b;
+    require(c >= a);
+
+    return c;
+}
+```
+
+CoinArrivalCoin 货币系统的实现，有以下的设计：
+ - 总供量：1000000000
+ - 名字：CoinArrivalCoin
+ - 符号：CAC
+ - 精确小数位：0（整数）
+
+ERC20 标准中的功能实现如下所示：
+
+```js
+contract Coin is StandardToken {
+ 
+  // 余额
+	mapping (address => uint256) public balanceOf;
+
+	mapping (address => mapping (address => uint256)) internal allowed;
+	
+  // 构造器
+	constructor() public {
+        totalSupply = 1000000000;
+        name = "Coin";
+        symbol = "C";
+        decimals = 0;
+        balanceOf[msg.sender] = totalSupply;
+    }
+ 
+    // 自己本地转账
+    function transfer(address to, uint256 value) public returns (bool success) {
+		require(to != address(0));
+		require(value <= balanceOf[msg.sender]);
+ 
+        balanceOf[msg.sender] = sub(balanceOf[msg.sender], value);
+        balanceOf[to] = add(balanceOf[to], value);
+        emit Transfer(msg.sender, to, value);
+        return true;
+    }
+
+    // 批准别人使用自己的钱（可多次使用）
+    function approve(address spender, uint256 value) public returns (bool success) {
+        require(spender != address(0));
+
+        allowed[msg.sender][spender] = value;
+        emit Approval(msg.sender, spender, value);
+        return true;
+    }
+ 
+    // 与approve结合使用
+    function transferFrom(address from, address to, uint256 value) public returns (bool success) {
+		require(to != address(0));
+        require(value <= balanceOf[from]);
+        require(value <= allowed[from][msg.sender]);
+ 
+        balanceOf[from] = sub(balanceOf[from], value);
+        balanceOf[to] = add(balanceOf[to], value);
+        allowed[from][msg.sender] = sub(allowed[from][msg.sender], value);
+
+        emit Transfer(from, to, value);
+
+        return true;
+    }
+ 
+    // 返回批准使用钱的余额
+    function allowance(address _owner, address spender) public view returns (uint256 remaining) {
+      return allowed[_owner][spender];
+    }
+ 
+}
 ```
