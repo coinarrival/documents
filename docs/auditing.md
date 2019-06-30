@@ -20,7 +20,7 @@
 |15344015|hongzicong|problems about requirement|https://github.com/software-system-analysis-and-design/Dashboard/issues/2#issuecomment-507042571|                                             |
 | 16340122 | Cynthiasky | problems about requirement | <https://github.com/software-system-analysis-and-design/Dashboard/issues/2#issuecomment-507043590>|
 | 16340256 | sysuxwh   |  problems about requirement | <https://github.com/software-system-analysis-and-design/Dashboard/issues/2#issuecomment-507044209>|
-|          |           |                           |                                               |
+| 16340258 |Hairi| problems about requirements | <https://github.com/software-system-analysis-and-design/Dashboard/issues/2#issuecomment-507048988> |
 
 
 # 设计审计
@@ -32,4 +32,4 @@
 |15344015|hongzicong|problems about database|https://github.com/software-system-analysis-and-design/Dashboard/issues/1#issuecomment-507041463|
 | 16340122 | Cynthiasky |problems about database| <https://github.com/software-system-analysis-and-design/Dashboard/issues/1#issuecomment-507045082> |
 | 16340256 | sysuxwh   | problems about database  | <https://github.com/software-system-analysis-and-design/Dashboard/issues/1#issuecomment-507045843>                                              |
-|          |           |                               |                                               |
+| 16340258 | Hairi | problems about database |<https://github.com/software-system-analysis-and-design/Dashboard/issues/1#issuecomment-507049662>|
