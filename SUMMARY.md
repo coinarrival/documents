@@ -34,6 +34,7 @@
     * [Inception 19/4/28](docs/meettingRecording/inception_4_28.md)
     * [Inception 19/5/7](docs/meettingRecording/inception_5_07.md)
     * [Inception 19/6/21](docs/meettingRecording/inception_6_21.md)
+* [Auditing Records](docs/auditingRecords.md)
 * 测试报告
     * [Round One](docs/test/round_one.md)
     * [Round Two](docs/test/round_two.md)
