@@ -34,7 +34,7 @@
     * [Round One](docs/test/round_one.md)
     * [Round Two](docs/test/round_two.md)
     * [Round Three](docs/test/round_three.md)
-* Demo
+* Demo(成品展示)
     * [项目Demo](docs/demo/demo.md)
 * X1 Meeting Recording
     * [Inception 19/4/28](docs/meettingRecording/inception_4_28.md)
