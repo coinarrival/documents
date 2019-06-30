@@ -29,8 +29,6 @@
 
 ## 敏捷开发迭代记录与大事纪
 
-### [开发全过程看板](https://github.com/coinarrival/documents/projects/)
-
 ### Inception 4
 
 #### 目标

@@ -30,16 +30,22 @@
     * [Solidity 代码规范](docs/productionSpecification/solidityCodeStyle.md)
     * [RESTful API 设计规范](docs/productionSpecification/restfulAPIDesign.md)
     * [安装部署说明](docs/productionSpecification/installation.md)
-* Meeting Recording
-    * [Inception 19/4/28](docs/meettingRecording/inception_4_28.md)
-    * [Inception 19/5/7](docs/meettingRecording/inception_5_07.md)
-    * [Inception 19/6/21](docs/meettingRecording/inception_6_21.md)
 * 测试报告
     * [Round One](docs/test/round_one.md)
     * [Round Two](docs/test/round_two.md)
     * [Round Three](docs/test/round_three.md)
 * Demo
     * [项目Demo](docs/demo/demo.md)
-* X Final Report
+* X1 Meeting Recording
+    * [Inception 19/4/28](docs/meettingRecording/inception_4_28.md)
+    * [Inception 19/5/7](docs/meettingRecording/inception_5_07.md)
+    * [Inception 19/6/21](docs/meettingRecording/inception_6_21.md)
+* X2 KANBAN
+    * [OverView](docs/kanban.md)
+* X3 auditing-records
+    * [OverView](docs/auditing.md)
+* X4 Tech/Work Report
+    * [OverView](docs/techReport.md)
+* X5 Final Report
     * [OverView](docs/finalreport.md)
 
