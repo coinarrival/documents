@@ -19,7 +19,7 @@
 | 16340261 | xwy27     |problems about requirement|<https://github.com/software-system-analysis-and-design/Dashboard/issues/2#issue-462412762>|
 |15344015|hongzicong|problems about requirement|https://github.com/software-system-analysis-and-design/Dashboard/issues/2#issuecomment-507042571|                                             |
 | 16340122 | Cynthiasky | problems about requirement | <https://github.com/software-system-analysis-and-design/Dashboard/issues/2#issuecomment-507043590>|
-|          |           |                           |                                               |
+| 16340256 | sysuxwh   |  problems about requirement | <https://github.com/software-system-analysis-and-design/Dashboard/issues/2#issuecomment-507044209>|
 |          |           |                           |                                               |
 
 
@@ -31,5 +31,5 @@
 |16340261|xwy27|problems about database|<https://github.com/software-system-analysis-and-design/Dashboard/issues/1#issuecomment-507042071>|
 |15344015|hongzicong|problems about database|https://github.com/software-system-analysis-and-design/Dashboard/issues/1#issuecomment-507041463|
 | 16340122 | Cynthiasky |problems about database| <https://github.com/software-system-analysis-and-design/Dashboard/issues/1#issuecomment-507045082> |
-|          |           |                               |                                               |
+| 16340256 | sysuxwh   | problems about database  | <https://github.com/software-system-analysis-and-design/Dashboard/issues/1#issuecomment-507045843>                                              |
 |          |           |                               |                                               |
